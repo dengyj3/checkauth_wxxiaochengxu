@@ -1,0 +1,23 @@
+<!--index.wxml-->
+<!--顶部轮播图 begin-->
+<import src="../index/template/topScroll.wxml"/>
+<template is="topScroll" data="{{ topScroll,indicatorDots,autoplay,interval,duration,imgUrls }}"/>
+<!--顶部轮播图 end-->
+
+<!--顶部搜索 begin-->
+<view class="search-container" id="search">
+  <icon bindtap="searchClickEvent" type="search" size="20" bindtap="getResult"/>
+  <input id="search_value" type="text" placeholder="请输入机构名称,认证领域, 地区等" bindinput="getInput"></input>
+</view>
+<!--顶部搜索 end-->
+
+<!--导航图标 begin-->
+<import src="../index/template/banner.wxml"/>
+<template is="banner" data="{{ bannerIcon }}"/>
+<!--导航图标 end-->
+
+<!-- 热门查询 -->
+<include src="../index/template/hotquery.wxml"/>
+
+	
+

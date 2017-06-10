@@ -1,0 +1,14 @@
+<!--pages/main/hotquery.wxml-->
+<view class="body">
+
+  <scroll-view class="nav bc_white" scroll-x="{{true}}">
+    <view class="{{selected?'red':'default'}}" bindtap="selected">CCC认证机构</view>
+    <view class="{{selected1?'red':'default'}}" bindtap="selected1">有机认证机构</view>
+    <view class="{{selected?'red':'default'}}" bindtap="selected">ISO90001认证机构</view>
+    <view class="{{selected1?'red':'default'}}" bindtap="selected1">服务认证机构</view>
+    <view class="{{selected?'red':'default'}}" bindtap="selected">检测认证整合机构</view>
+    <view class="{{selected1?'red':'default'}}" bindtap="selected1">发证量排序</view>
+  </scroll-view>
+  <view class="{{selected?'show':'hidden'}}">for system</view>
+  <view class="{{selected1?'show':'hidden'}}">for activity</view>
+</view>

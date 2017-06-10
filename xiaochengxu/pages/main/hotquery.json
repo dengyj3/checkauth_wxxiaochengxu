@@ -1,0 +1,21 @@
+{
+  "tabBar": {
+    "color": "black",
+    "selectedColor": "red",
+    "borderStyle": "black",
+    "backgroundColor": "gray",
+    "position": "top",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/index/index"
+        
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/main/main"
+        
+      }
+    ]
+  }
+  }

@@ -1,0 +1,15 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/main/main",
+    "pages/logs/logs",
+    "pages/main/detail",
+    "pages/main/hotquery"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "检测认证宝",
+    "navigationBarTextStyle":"black"
+  }
+}

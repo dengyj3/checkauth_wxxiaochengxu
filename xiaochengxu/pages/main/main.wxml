@@ -1,0 +1,59 @@
+<!--pages/main/main.wxml-->
+<view class="search-container" id="search" >
+  <icon bindtap="searchClickEvent" type="search" size="20"/>
+  <input id="search_value" type="text" placeholder="{{placehoder}}" bindinput="searchInputEvent"></input>
+</view>
+<view class="hotquery" style="{{bvisiable}}">
+<label>热搜词:</label>
+  <navigator url="../main/main?keyword={{hotword.word1}}" redirect>
+    <label>{{hotword.word1}}</label>
+  </navigator>
+  <navigator url="../main/main?keyword={{hotword.word1}}" redirect>
+    <label>{{hotword.word2}}</label>
+  </navigator>
+</view>
+
+<scroll-view scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltolower="scrollLowerEvent">
+  <view class="logo" wx:if="{{loadingMore && totalRecord == 0 && !isInit}}">
+    <icon type="cancel" color="#B0AAAA" size="50" />
+    <view>
+      <text>没有找到相关数据</text>
+    </view>
+  </view>
+  <view class="header" wx:if="{{totalRecord > 0 && !isInit}}">
+    查询到 <text style="color:green">{{totalRecord}}</text> 条数据
+  </view>
+  
+  <view class="common-list" wx:if="{{totalRecord > 0}}">
+    <block wx:for="{{pageData}}">
+      <navigator url="./detail?instCode={{item.instCode}}">
+      <view class="list-item" data-bid="{{item.instCode}}" bindtap="toDetailPage">
+        <view class="index-list-item">
+          <view class="cover">
+            <text>{{item.instName}}</text>
+          </view>
+          <view class="content">
+            <view class="title">logo名称: <image src="../images/logo1.png"></image>{{item.logoName}}</view>
+            <view class="title">成立年限: {{item.ratifyDate}}</view>
+            <view class="title">
+              <text>{{item.status}}  </text>
+              <text>{{item.cnas}}  </text>
+              <text>{{item.out}}  </text>
+              <text>{{item.hinew}}  </text>
+            </view>
+            <view class="service-tags">
+              <text>{{item.instType}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      </navigator>
+    </block>
+  </view>
+  <view class="refresh-footer" wx:if="{{loadingMore}}">
+    <icon type="waiting" size="30" color="{{footerIconColor}}" />
+  </view>
+  
+</scroll-view>
+
+

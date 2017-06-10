@@ -1,0 +1,61 @@
+<view class="mindustry-section ng-scope">
+  
+  <view class="msection-title">
+    <image src="../images/blueStrip.png"></image> 热门查询
+  </view>
+  <view class="mindustry-main"> 
+    <navigator class="box-sizing" url="../main/hotquery">
+      <view class="mindustry-items mindustry-items-left">        
+        <view class="mindusrty-finance">
+          <image src="../images/ccc.jpg" alt=""></image>
+          <text>CCC认证机构</text>
+        </view>
+      </view>
+    </navigator>
+    <navigator class="box-sizing" url="../main/hotquery">
+      <view class="mindustry-items mindustry-items-right">
+        
+        <view class="mindusrty-finance">
+        <image src="../images/youji.jpg" alt=""></image>
+          <text>有机认证机构</text>
+        </view>
+      </view>
+    </navigator> 
+    <navigator class="box-sizing" url="../main/hotquery">
+    <view class="mindustry-items mindustry-items-left">
+      
+        <view class="mindusrty-finance">
+        <image src="../images/iso9001.jpg" alt=""></image>
+          <text>ISO9001认证机构</text>
+        </view>
+    </view>
+    </navigator> 
+    <navigator class="box-sizing" url="../main/hotquery">
+      <view class="mindustry-items mindustry-items-right">
+        
+        <view class="mindusrty-finance">
+        <image src="../images/mfinance.png" alt=""></image>
+          <text>服务认证机构</text>
+        </view>
+      </view>
+    </navigator> 
+    <navigator url="../main/hotquery">
+      <view class="mindustry-items mindustry-items-left">
+        
+        <view class="mindusrty-finance">
+          <image src="../images/minternet.png" alt=""></image>
+          <text>检测认证整合机构</text>
+        </view>
+      </view>
+    </navigator> 
+    <navigator url="../main/hotquery">
+      <view class="mindustry-items mindustry-items-right">
+       
+        <view class="mindusrty-finance">
+          <image src="../images/logo4.png" alt=""></image>
+          <text>发证量排序</text>
+        </view>
+      </view>
+    </navigator> 
+    </view>
+</view>

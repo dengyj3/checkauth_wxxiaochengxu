@@ -1,0 +1,16 @@
+<!-- 首页图标导航template begin-->
+<template name="banner">
+    <view class="navlist clearfix">
+        <template is="bannerIcon" data="{{item}}" wx:for="{{bannerIcon}}" wx:key="{{item.Id}}"/>
+    </view>
+</template>
+<!-- 首页图标导航template begin-->
+
+<template name="bannerIcon">  
+    <navigator url="{{item.Link}}">
+      <view class="imgitem">
+        <image src="{{item.Pic}}" alt=""></image>
+      </view>
+        <text>{{item.Name}}</text>
+    </navigator>    
+</template>
