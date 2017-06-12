@@ -44,7 +44,7 @@
         
         <view class="mindusrty-finance">
           <image src="../images/minternet.png" alt=""></image>
-          <text>检测认证整合机构</text>
+          <text>按成立年限排序</text>
         </view>
       </view>
     </navigator> 
@@ -53,7 +53,7 @@
        
         <view class="mindusrty-finance">
           <image src="../images/logo4.png" alt=""></image>
-          <text>发证量排序</text>
+          <text>按证书数量排序</text>
         </view>
       </view>
     </navigator> 

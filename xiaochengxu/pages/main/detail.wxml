@@ -87,14 +87,14 @@
               <view class="th">认证类别</view>
               <view class="th">有效证书总数</view>
             </view>
-            <block wx:for="{{instDetail.authTypeStatTempEntities}}" wx:key="{{typeName}}">
+            <block wx:for="{{instDetail.authInstStaticsEntity.groupStaticsList}}" wx:key="{{typeName}}">
               <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
                 <view class="td">{{item.typeName}}</view>
-                <view class="td">{{item.effCerNum}}</view>
+                <view class="td">{{item.authNum}}</view>
               </view>
               <view class="tr" wx:else>
                 <view class="td">{{item.typeName}}</view>
-                <view class="td">{{item.effCerNum}}</view>
+                <view class="td">{{item.authNum}}</view>
               </view>
             </block>
           </view>
@@ -108,14 +108,14 @@
               <view class="th">认证类别</view>
               <view class="th">认证人员数量</view>
             </view>
-            <block wx:for="{{instDetail.authTypeStatTempEntities}}" wx:key="{{typeName}}">
+            <block wx:for="{{instDetail.authInstStaticsEntity.groupStaticsList}}" wx:key="{{typeName}}">
               <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
                 <view class="td">{{item.typeName}}</view>
-                <view class="td">{{item.authPerNum}}</view>
+                <view class="td">{{item.personNum}}</view>
               </view>
               <view class="tr" wx:else>
                 <view class="td">{{item.typeName}}</view>
-                <view class="td">{{item.authPerNum}}</view>
+                <view class="td">{{item.personNum}}</view>
               </view>
             </block>
           </view>

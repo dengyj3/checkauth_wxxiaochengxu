@@ -1,14 +1,28 @@
-<!--pages/main/hotquery.wxml-->
-<view class="body">
-
-  <scroll-view class="nav bc_white" scroll-x="{{true}}">
-    <view class="{{selected?'red':'default'}}" bindtap="selected">CCC认证机构</view>
-    <view class="{{selected1?'red':'default'}}" bindtap="selected1">有机认证机构</view>
-    <view class="{{selected?'red':'default'}}" bindtap="selected">ISO90001认证机构</view>
-    <view class="{{selected1?'red':'default'}}" bindtap="selected1">服务认证机构</view>
-    <view class="{{selected?'red':'default'}}" bindtap="selected">检测认证整合机构</view>
-    <view class="{{selected1?'red':'default'}}" bindtap="selected1">发证量排序</view>
-  </scroll-view>
-  <view class="{{selected?'show':'hidden'}}">for system</view>
-  <view class="{{selected1?'show':'hidden'}}">for activity</view>
-</view>
+<scroll-view class="swiper-tab" scroll-x="true" style=" white-space: nowrap; display: flex">
+ <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">CCC认证机构</view>
+ <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">有机认证机构 </view>
+ <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">ISO90001认证机构 </view>
+ <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">服务认证机构 </view>
+ <view class="swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="swichNav">检测认证整合机构 </view>
+ <view class="swiper-tab-list {{currentTab==5 ? 'on' : ''}}" data-current="5" bindtap="swichNav">发证量排序</view>
+</scroll-view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+ <swiper-item>
+  <view>Seside1</view>
+ </swiper-item>
+ <swiper-item>
+  <view>Seside2</view>
+ </swiper-item>
+ <swiper-item>
+  <view>Seside3</view>
+ </swiper-item>
+ <swiper-item>
+  <view>Seside4</view>
+ </swiper-item>
+ <swiper-item>
+  <view>Seside5</view>
+ </swiper-item>
+ <swiper-item>
+  <view>Seside6</view>
+ </swiper-item>
+</swiper>

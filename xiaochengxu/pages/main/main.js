@@ -55,14 +55,14 @@ Page({
       flag = "2";
       console.log("认证领域")
       _this.setData({ hotword: { "word1": "质量", "word2": "食品" }, isInit: false, placehoder: "请输入认证领域" });
-    } else if (name == "地区") {
+    } else if (name == "所在地区") {
       flag = "3";
-      console.log("地区")
+      console.log("所在地区")
       _this.setData({ hotword: { "word1": "北京", "word2": "上海" }, isInit: false, placehoder: "请输入地区" });
     } else {
       flag = "4";
-      console.log("机构类型")
-      _this.setData({ hotword: { "word1": "企业", "word2": "事业单位" }, isInit: false, placehoder: "请输入机构类型" });
+      console.log("认可情况")
+      _this.setData({ hotword: { "word1": "cnas认可", "word2": "境外认可" }, isInit: false, placehoder: "请输入认可情况" });
     }
 
   },
@@ -146,25 +146,6 @@ Page({
       return;
     }
     this.setData({ pageIndex: 0, pageData: [] });
-
-    /*wx.request({
-      //url: 'http://localhost:8080/checkauth/authInst/query?instCode=CNCA-R-2002-002', //仅为示例，并非真实的接口地址
-      url: 'http://localhost:8080/checkauth/authInst/fuzzyQueryByContent',
-      data: {
-        content: this.data.searchKey,
-        flag : flag
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res.data)
-        //var obj = JSON.parse(res.data.data);
-        //console.log("id is : "+obj.id);
-      }
-    })*/
-
-
     requestData.call(this);
 
   },
@@ -175,13 +156,13 @@ Page({
     requestData.call(this);
   },
   //跳转到详细页面
-  toDetailPage: function (e) {
-    console.log("enter detail page");
+  //toDetailPage: function (e) {
+    //console.log("enter detail page");
     /*var bid = e.currentTarget.dataset.bid; //图书id [data-bid]
     wx.navigateTo({
       url: 'detail?id=' + bid
     });*/
-  },
+  //},
   searchInputEvent: function (e) {
     this.setData({
       searchKey: e.detail.value
@@ -200,39 +181,16 @@ function requestData() {
   var start = this.data.pageIndex;
 
   this.setData({ loadingMore: true, isInit: false });
-  //updateRefreshBall.call(this);
-  /*console.log(start)
-  _this.setData({ totalRecord: 1 });
-  console.log(this.data.totalRecord)
-  _this.setData({ bvisiable: "display:none" });
+  updateRefreshBall.call(this);
+  //请求之前清空列表数据
   _this.setData({
-    pageData: [{
-      "id": 1,
-      "companyName": "CHINA-ISUR",
-      "logoName": "isur",
-      "rafiydate": "2002-01-01",
-      "status": "有效",
-      "cnas": "CNAS认可",
-      "out": "境外认可",
-      "hinew": "高新技术企业",
-      "instType": "上市公司"
-    }, {
-      "id": 1,
-      "companyName": "中创国新",
-      "logoName": "isur",
-      "rafiydate": "2002-01-01",
-      "status": "有效",
-      "cnas": "CNAS认可",
-      "out": "境外认可",
-      "hinew": "高新技术企业",
-      "instType": "上市公司"
-    }],
-    pageIndex: start + 1,
-    totalRecord: 2
-  });*/
+    pageData: [],
+    totalRecord: 0
+  });
   requests.requestSearchInstByKeyWord({
-    q: q, start: start, content: this.data.searchKey,
-    flag: flag
+    q: q, start: start, 
+    queryContent: this.data.searchKey,
+    queryFlag: flag
   }, (data) => {
     if (data.retCode == '02') {
       //没有记录
@@ -241,11 +199,11 @@ function requestData() {
       console.log("sucess count is ... " + data.retCode)
       console.log("sucess data is ... " + data.data)
       /*var obj = JSON.parse(data.data)*/;
-      console.log(data.data.length);
+      console.log(data.data.pageList.length);
       _this.setData({
-        pageData: _this.data.pageData.concat(data.data),
+        pageData: _this.data.pageData.concat(data.data.pageList),
         pageIndex: start + 1,
-        totalRecord: data.data.length,
+        totalRecord: data.data.total,
         bvisiable: "display:none"
       });
     }

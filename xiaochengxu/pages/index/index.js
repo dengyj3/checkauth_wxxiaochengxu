@@ -17,8 +17,8 @@ Page({
     bannerIcon: [
       {"Pic":"../images/allIcon.png","Link":"../main/main?name=机构名称","Name":"机构名称"},
       { "Pic": "../images/bjIcon.png", "Link": "../main/main?name=认证领域", "Name": "认证领域"},
-      { "Pic": "../images/manIcon.png", "Link": "../main/main?name=地区", "Name": "地区"},
-      { "Pic": "../images/manufacturing.png", "Link": "../main/main?name=机构类型", "Name": "机构类型" }
+      { "Pic": "../images/manIcon.png", "Link": "../main/main?name=地区", "Name": "所在地区"},
+      { "Pic": "../images/manufacturing.png", "Link": "../main/main?name=机构类型", "Name": "认可情况" }
     ],
     queryString: ''
   },
