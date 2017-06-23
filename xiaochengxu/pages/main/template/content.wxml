@@ -1,0 +1,51 @@
+<template name="content">
+
+<scroll-view scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltolower="scrollLowerEvent">
+  <view class="logo" wx:if="{{!loadingMore && totalRecord == 0 && !isInit}}">
+    <icon type="cancel" color="#B0AAAA" size="50" />
+    <view>
+      <text>没有找到相关数据</text>
+    </view>
+  </view>
+  <view class="header" wx:if="{{totalRecord > 0 && !isInit}}">
+    查询到 <text style="color:green">{{totalRecord}}</text> 条数据
+  </view>
+  
+  <view class="common-list" wx:if="{{totalRecord > 0}}">
+    <block wx:for="{{pageData}}">
+      <navigator url="./detail?instCode={{item.instCode}}">
+      <view class="list-item" data-bid="{{item.instCode}}" bindtap="toDetailPage">
+        <view class="index-list-item">
+          <view class="cover">
+            <text>{{item.instName}}</text>
+          </view>
+          <view class="content">
+            <view class="title">logo名称: {{item.logoName}}</view>
+            <view class="title">成立年限: {{item.ratifyDate}}</view>
+            <view class="service-tags">
+              <text>{{item.instStatus}}</text>
+              <block wx:if = "{{item.cnasRec == '认可'}}">
+                <text>CNAS{{item.cnasRec}}</text>
+              </block>
+              <block wx:if = "{{item.outsideRec == '认可'}}">
+                <text>境外{{item.outsideRec}}</text>
+              </block>
+              <block wx:if = "{{item.highNewTecRec == '获得'}}">
+                <text>高新技术企业</text>  
+              </block>       
+              <text>{{item.instType}}</text>
+              
+            </view>
+          </view>
+        </view>
+      </view>
+      </navigator>
+    </block>
+  </view>
+  <view class="refresh-footer" wx:if="{{loadingMore}}">
+    <icon type="waiting" size="30" color="{{footerIconColor}}" />
+  </view>
+  
+</scroll-view>
+
+</template>

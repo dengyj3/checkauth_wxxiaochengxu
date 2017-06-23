@@ -1,0 +1,46 @@
+<!--pages/advice/advice.wxml-->
+
+<form bindsubmit="formBindsubmit" bindreset="formReset">
+  <view class="box" style="display:flex;">
+    <label>姓 名：</label>
+    <input type="text" name="userName" placeholder="请输入姓名" />
+  </view>
+  <view class="box" style="display:flex;">
+    <label>手机号：</label>
+    <input type="text" name="tel" placeholder="请输入手机号" />
+  </view>
+  <view class="content">
+    <textarea name="advice" placeholder="请输入意见及建议" />
+  </view>
+
+<!--
+  <block wx:for="{{stars}}" wx:key="">
+    <view class="comment">
+      <image class="star-image" style="left: {{item*150}}rpx" src="{{key > item ?(key-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+        <view class="item" style="left:0rpx" data-key="{{item+0.5}}" bindtap="selectLeft"></view>
+        <view class="item" style="left:75rpx" data-key="{{item+1}}" bindtap="selectRight"></view>
+      </image>
+    </view>
+  </block>
+  -->
+  <view style="display:flex;margin-top:30px;">
+    <button style="width:30%;" formType="submit">提交</button>
+    <button style="width:30%" formType="reset">重置</button>
+  </view>
+</form>
+
+
+<!-- 黑框提示并消失 -->  
+    <toast hidden="{{toast1Hidden}}" bindchange="toast1Change">  
+        {{notice_str}}  
+    </toast>  
+<!-- 确认框 及 提示框 -->
+<view class="page__bd">
+  <modal title="确认" confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="confirm_one" bindcancel="cancel_one">
+    确认提交么？
+  </modal>
+  <modal class="modal" hidden="{{modalHidden2}}" no-cancel bindconfirm="modalChange2" bindcancel="modalChange2">
+    <view> 提示 </view>
+    <view> 清空成功 </view>
+  </modal>
+</view>

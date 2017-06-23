@@ -50,6 +50,11 @@ page{
   line-height:30px; 
   margin-left: 25rpx;
 }
+
+.title text{
+  font-size: 24rpx;
+}
+
 .cover {
   line-height:30px; 
   margin-left: 25rpx;

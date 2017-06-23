@@ -1,7 +1,8 @@
 <!--index.wxml-->
 <!--顶部轮播图 begin-->
 <import src="../index/template/topScroll.wxml"/>
-<template is="topScroll" data="{{ topScroll,indicatorDots,autoplay,interval,duration,imgUrls }}"/>
+<!--<template is="topScroll" data="{{ topScroll,indicatorDots,autoplay,interval,duration,imgUrls }}"/>-->
+<template is="topScroll1"/>
 <!--顶部轮播图 end-->
 
 <!--顶部搜索 begin-->
@@ -17,7 +18,9 @@
 <!--导航图标 end-->
 
 <!-- 热门查询 -->
-<include src="../index/template/hotquery.wxml"/>
+<include src="../index/template/hot.wxml"/>
 
-	
-
+<navigator url="../advice/advice">
+  <image class="image-style" src="../images/suggest.png" bindtap="ballClickEvent" style="bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent"> 
+  </image>
+</navigator>

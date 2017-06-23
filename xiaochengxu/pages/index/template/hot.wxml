@@ -4,7 +4,7 @@
     <image src="../images/blueStrip.png"></image> 热门查询
   </view>
   <view class="mindustry-main"> 
-    <navigator class="box-sizing" url="../main/hotquery">
+    <navigator class="box-sizing" url="../main/hotquery?id=0">
       <view class="mindustry-items mindustry-items-left">        
         <view class="mindusrty-finance">
           <image src="../images/ccc.jpg" alt=""></image>
@@ -12,7 +12,7 @@
         </view>
       </view>
     </navigator>
-    <navigator class="box-sizing" url="../main/hotquery">
+    <navigator class="box-sizing" url="../main/hotquery?id=1">
       <view class="mindustry-items mindustry-items-right">
         
         <view class="mindusrty-finance">
@@ -21,7 +21,7 @@
         </view>
       </view>
     </navigator> 
-    <navigator class="box-sizing" url="../main/hotquery">
+    <navigator class="box-sizing" url="../main/hotquery?id=2">
     <view class="mindustry-items mindustry-items-left">
       
         <view class="mindusrty-finance">
@@ -30,7 +30,7 @@
         </view>
     </view>
     </navigator> 
-    <navigator class="box-sizing" url="../main/hotquery">
+    <navigator class="box-sizing" url="../main/hotquery?id=3">
       <view class="mindustry-items mindustry-items-right">
         
         <view class="mindusrty-finance">
@@ -39,7 +39,7 @@
         </view>
       </view>
     </navigator> 
-    <navigator url="../main/hotquery">
+    <navigator url="../main/hotquery?id=4">
       <view class="mindustry-items mindustry-items-left">
         
         <view class="mindusrty-finance">
@@ -48,7 +48,7 @@
         </view>
       </view>
     </navigator> 
-    <navigator url="../main/hotquery">
+    <navigator url="../main/hotquery?id=5">
       <view class="mindustry-items mindustry-items-right">
        
         <view class="mindusrty-finance">

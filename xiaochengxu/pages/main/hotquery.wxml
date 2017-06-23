@@ -9,6 +9,9 @@
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
  <swiper-item>
   <view>Seside1</view>
+  <!--顶部轮播图 begin-->
+<import src="../main/template/content.wxml"/>
+<template is="content" data="{{ totalRecord,pageData,loadingMore,footerIconColor,isInit }}"/>
  </swiper-item>
  <swiper-item>
   <view>Seside2</view>

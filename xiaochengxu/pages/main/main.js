@@ -5,7 +5,7 @@ var requests = require('../../requests/request.js');
 var iconColor = [
   '#42BD56', '#31A040'
 ];
-var flag;
+var flag="";
 Page({
 
   /**
@@ -22,8 +22,7 @@ Page({
     searchKey: null, //搜索关键字
     bvisiable: 'display:block',//设置热搜词是否显示
     hotword: {},//热搜词
-    placehoder: "",//搜索框提示信息
-    queryString: ""//用户输入的查询词
+    placehoder: ""//搜索框提示信息
   },
 
   /**
@@ -32,8 +31,17 @@ Page({
   onLoad: function (options) {
     var _this = this;
     const keyword = options.keyword;
-    console.log(keyword);
-    _this.setData({ queryString: keyword });
+    
+    const index = options.index;
+    if(index == 0){
+      _this.setData({
+        bvisiable: "display:none",
+        searchKey: keyword
+      });
+      this.setData({ pageIndex: 0, pageData: [] });
+      requestData.call(this);
+    }
+
     if (keyword != undefined) {//按关键字查询查询
       //return;
     }
@@ -49,21 +57,17 @@ Page({
     }
     if (name == "机构名称") {
       flag = "1";
-      console.log("机构名称")
       _this.setData({ hotword: { "word1": "中创", "word2": "国新" }, isInit: false, placehoder: "请输入机构名称" });
     } else if (name == "认证领域") {
       flag = "2";
-      console.log("认证领域")
       _this.setData({ hotword: { "word1": "质量", "word2": "食品" }, isInit: false, placehoder: "请输入认证领域" });
     } else if (name == "所在地区") {
       flag = "3";
-      console.log("所在地区")
       _this.setData({ hotword: { "word1": "北京", "word2": "上海" }, isInit: false, placehoder: "请输入地区" });
-    } else {
+    } else if(name == "认可情况"){
       flag = "4";
-      console.log("认可情况")
       _this.setData({ hotword: { "word1": "cnas认可", "word2": "境外认可" }, isInit: false, placehoder: "请输入认可情况" });
-    }
+    } 
 
   },
 
@@ -71,24 +75,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    /*var queryWord = this.data.queryString;
-    var _this = this;
-    requests.requestSearchInstByKeyWord(
-      queryWord,
-      { fields: 'id,companyName,logoName,rafiydate,status,cnas,out,hinew,instType' },
-      (data) => {
-        console.log(data)
-        _this.setData({
-          bookData: data
-        });
-      }, () => {
-        wx.navigateBack();
-      }, () => {
-        _this.setData({
-          loadingMore: true
-        });
-      }
-    );*/
+    
   },
 
   /**
@@ -98,7 +85,6 @@ Page({
   onShow: function () {
     wx.getSystemInfo({
       success: (res) => {
-        console.log(res)
         this.setData({
           scrollHeight: res.windowHeight - (100 * res.windowWidth / 750) //80为顶部搜索框区域高度 rpx转px 屏幕宽度/750
         });
@@ -155,14 +141,7 @@ Page({
       return;
     requestData.call(this);
   },
-  //跳转到详细页面
-  //toDetailPage: function (e) {
-    //console.log("enter detail page");
-    /*var bid = e.currentTarget.dataset.bid; //图书id [data-bid]
-    wx.navigateTo({
-      url: 'detail?id=' + bid
-    });*/
-  //},
+  
   searchInputEvent: function (e) {
     this.setData({
       searchKey: e.detail.value
@@ -188,18 +167,15 @@ function requestData() {
     totalRecord: 0
   });
   requests.requestSearchInstByKeyWord({
-    q: q, start: start, 
-    queryContent: this.data.searchKey,
+    start: start, 
+    queryContent: q,
     queryFlag: flag
   }, (data) => {
     if (data.retCode == '02') {
       //没有记录
       _this.setData({ totalRecord: 0 });
     } else if(data.retCode == '00') {
-      console.log("sucess count is ... " + data.retCode)
-      console.log("sucess data is ... " + data.data)
       /*var obj = JSON.parse(data.data)*/;
-      console.log(data.data.pageList.length);
       _this.setData({
         pageData: _this.data.pageData.concat(data.data.pageList),
         pageIndex: start + 1,

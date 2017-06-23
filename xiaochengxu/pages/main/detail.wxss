@@ -9,7 +9,7 @@ page {
   margin: 0;
   background-color: #f8f8f8;
 }
-.container {
+.container,.container-body {
   padding: 0 20px;
 }
 .service-item {
@@ -18,26 +18,36 @@ page {
   border-bottom: 1rpx solid #e8e8e8;
 }
 
+
 .title {
-  line-height: 30px;
+  line-height:30px; 
+  margin-left: 25rpx;
+  padding: 0 20rpx;
+}
+
+.title text{
+  font-size: 24rpx;
 }
 
 .cover {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
+  display: block;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #e8e8e8;
 }
 
 .msection-title {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
   margin: 0px 0 20px 0;
-  padding-left: 15px;
+  padding-left: 10px;
   background-size: 5px 25px;
   position: relative;
 }
 
 .msection-title image {
-  margin-left: -30rpx;
+  margin-left: -20rpx;
   width: 10rpx;
   height: 40rpx;
   position: absolute;
@@ -92,9 +102,44 @@ page {
 	border: 1rpx solid #f7982a;
 	line-height: 1;
 	color: #f7982a;
-	font-size: 28rpx;
+	font-size: 24rpx;
 	border-radius: 4rpx;
 	margin-right: 10rpx;
 	margin-bottom: 10rpx;
 	white-space: nowrap;
 }
+
+.content{
+  padding: 20rpx 20rpx;
+  display: block;
+  border-bottom: 1rpx solid #e8e8e8;
+}
+
+.swiper-tab{
+  /*width: 100%;*/ 
+  border-bottom: 2rpx solid #777777; 
+  text-align: left; 
+  line-height: 40rpx;
+}
+.swiper-tab-list{
+  /*font-size: 20rpx; */
+  display: inline-block; 
+  /*width: 16.6%; */
+  color: #777777; 
+  padding:0 10rpx;
+}
+.on{
+  color: #da7c0c; 
+  border-bottom: 5rpx solid #da7c0c;
+}
+.swiper-box{ 
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+ }
+.swiper-box view{ 
+  text-align: left; 
+  padding-top:10rpx;
+}
+

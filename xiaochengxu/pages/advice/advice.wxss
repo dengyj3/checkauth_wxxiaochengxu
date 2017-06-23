@@ -1,0 +1,59 @@
+/* pages/advice/advice.wxss */
+page{
+  min-width: 320px;
+  font: 14px/150% "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
+  color: #222;
+  -webkit-text-size-adjust: none;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+}
+.box,.content{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+  padding: 0 5rpx;
+  z-index: 100;
+}
+
+.box input{
+  background: #FFF;
+  color: #AAA;
+  padding: 0 20rpx;
+  height: 40rpx;
+  width: 60%;
+  border-radius: 8rpx;
+  border: 1rpx solid #f7982a;
+}
+
+.content textarea{
+  background: #FFF;
+  color: #AAA;
+  padding: 0 20rpx;
+  height: 100rpx;
+  width: 100%;
+  border-radius: 8rpx;
+  border: 1rpx solid #f7982a;
+}
+
+.star-image{
+  position: absolute;
+  top: 320rpx;
+  width: 120rpx;
+  height: 120rpx;
+  src: "../images/normal.png";
+}
+.item{
+  position: absolute;
+  top: 50rpx;
+  width: 75rpx;
+  height: 150rpx;
+}
+
+button{
+  top: 200rpx;
+
+}
+

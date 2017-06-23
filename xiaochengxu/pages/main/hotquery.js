@@ -17,6 +17,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    that.setData({ currentTab : options.id })
+
     // 获取系统信息 
     wx.getSystemInfo({
       success: function (res) {
