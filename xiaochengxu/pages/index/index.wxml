@@ -7,8 +7,8 @@
 
 <!--顶部搜索 begin-->
 <view class="search-container" id="search">
-  <icon bindtap="searchClickEvent" type="search" size="20" bindtap="getResult"/>
-  <input id="search_value" type="text" placeholder="请输入机构名称,认证领域, 地区等" bindinput="getInput"></input>
+  <icon type="search" size="20" bindtap="getResult"/>
+  <input id="search_value" type="text" placeholder="请输入机构名称,认证领域, 地区等" bindinput="getInput" bindconfirm="seachClick"></input>
 </view>
 <!--顶部搜索 end-->
 
@@ -16,7 +16,7 @@
 <import src="../index/template/banner.wxml"/>
 <template is="banner" data="{{ bannerIcon }}"/>
 <!--导航图标 end-->
-
+<view class="m-specing ng-scope"></view>
 <!-- 热门查询 -->
 <include src="../index/template/hot.wxml"/>
 

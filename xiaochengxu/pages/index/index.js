@@ -16,10 +16,10 @@ Page({
     interval: 5000,
     duration: 1000,
     bannerIcon: [
-      { "Pic": "../images/allIcon.png", "Link": "../main/main?name=机构名称", "Name": "机构名称" },
-      { "Pic": "../images/bjIcon.png", "Link": "../main/main?name=认证领域", "Name": "认证领域" },
-      { "Pic": "../images/manIcon.png", "Link": "../main/main?name=所在地区", "Name": "所在地区" },
-      { "Pic": "../images/manufacturing.png", "Link": "../main/main?name=认可情况", "Name": "认可情况" }
+      { "Pic": "../images/logo3.png", "Link": "../main/main?name=机构名称", "Name": "机构名称" },
+      { "Pic": "../images/logo2.png", "Link": "../main/main?name=认证领域", "Name": "认证领域" },
+      { "Pic": "../images/logo1.png", "Link": "../main/main?name=所在地区", "Name": "所在地区" },
+      { "Pic": "../images/logo4.png", "Link": "../main/main?name=认可情况", "Name": "认可情况" }
     ],
     queryString: '',
     ballBottom: 5,
@@ -89,10 +89,16 @@ Page({
       queryString: e.detail.value
     })
   },
+
+  seachClick: function(e){//完成按钮触发事件
+    wx.navigateTo({
+      url: '../main/main?keyword=' + e.detail.value + '&index=0',
+    })
+  },
   onShareAppMessage: function () {//设置分享
     return {
-      title: '检测认证宝',
-      desc: '检测认证宝!',
+      title: '认证宝',
+      desc: '认证宝!',
       path: '/index/index'
     }
   },

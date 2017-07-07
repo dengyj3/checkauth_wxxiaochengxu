@@ -6,6 +6,7 @@
     "pages/main/detail",
     "pages/main/hotquery",
     "pages/advice/advice"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",

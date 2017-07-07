@@ -51,10 +51,30 @@ function requestInstDetailInfo(id, data, successCb, errorCb, completeCb) {
 function requestHasTag(tag, successCb, errorCb, completeCb) {
   request(api.API_INST_SEARCH, {tag: tag, count: 1}, successCb, errorCb, completeCb);
 }
-
+/**
+ * 提交用户建议
+ */
+function requestUserAdvice(data, successCb, errorCb, completeCb){
+  request(api.API_USER_ADVICE, data, successCb, errorCb, completeCb);
+}
+/**
+ * 提交用户建议
+ */
+function requestGetTopN(data, successCb, errorCb, completeCb){
+  request(api.API_INST_TOPN, data, successCb, errorCb, completeCb);
+}
+/**
+ * 搜索
+ */
+function requestHotQuery(data, successCb, errorCb, completeCb) {
+  request(api.API_INST_HOTQUERY, data, successCb, errorCb, completeCb);
+}
 module.exports = {
   requestSearchInstByKeyWord: requestSearchInstByKeyWord,
   requestInstDetail: requestInstDetail,
-  requestInstDetailInfo : requestInstDetailInfo
+  requestInstDetailInfo : requestInstDetailInfo,
+  requestUserAdvice: requestUserAdvice,
+  requestGetTopN: requestGetTopN,
+  requestHotQuery: requestHotQuery
 }
 

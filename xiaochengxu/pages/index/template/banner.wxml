@@ -9,7 +9,7 @@
 <template name="bannerIcon">  
     <navigator url="{{item.Link}}">
       <view class="imgitem">
-        <image src="{{item.Pic}}" alt=""></image>
+        <image src="{{item.Pic}}" alt="" style="opacity:0.3" ></image>
       </view>
         <text>{{item.Name}}</text>
     </navigator>    

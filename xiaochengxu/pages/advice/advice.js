@@ -1,4 +1,6 @@
 // pages/advice/advice.js
+var requests = require('../../requests/request.js');
+
 Page({
 
   /**
@@ -80,40 +82,47 @@ Page({
    */
   formBindsubmit: function (e) {
     //打印所有关于点击对象的信息
-    console.log("comment is --->>> "+this.data.key);
-    this.setData({
+    var that = this;
+    // console.log("comment is --->>> "+this.data.key);
+    that.setData({
       userName:e.detail.value.userName,
       tel:e.detail.value.tel,
       advice:e.detail.value.advice
     })
-    console.log(this.data.userName);
-    console.log(this.data.tel);
-    console.log(this.data.advice);
-    /*
-    wx.request({
-      url: 'http://test.com:8080/test/socket.php?msg=2',
-      data: formData,
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res.data)
+    var name = that.data.userName;
+    var mobilePhone = that.data.tel;
+    var content = that.data.advice;
+
+    requests.requestUserAdvice({
+      name: name,
+      mobilePhone: mobilePhone,
+      content: content
+    }, (data) => {
+      if (data.retCode == '02') {
+        // console.log(data.retMsg);
+        //没有记录
+      } else if (data.retCode == '00') {
+        // console.log(data.data);
         that.modalTap();//提交成功弹出提示信息
+        //提交完成,返回上层页面
+        /*wx.navigateBack({
+          
+        });*/
+      } else {
+        // console.log(data.retMsg)
       }
-    })*/  
-
-    //this.modalTap(); 
-    //请求保存意见及建议
-
-    //提交完成,返回上层页面
-    /*wx.navigateBack({
+    }, () => {
       
-    })*/
+    }, () => {
+      
+    });    
   },
   formReset: function () {
-    console.log('form发生了reset事件');
+    // console.log('form发生了reset事件');
     this.modalTap2();
   },
+
+  /*
   //点击右边,半颗星
   selectLeft: function (e) {
     var key = e.currentTarget.dataset.key
@@ -134,7 +143,7 @@ Page({
     this.setData({
       key: key
     })
-  },
+  },*/
   toast1Change: function (e) {
     this.setData({ toast1Hidden: true });
   },
@@ -145,7 +154,7 @@ Page({
     })
   },
   confirm_one: function (e) {
-    console.log(e);
+    // console.log(e);
     this.setData({
       modalHidden: true,
       toast1Hidden: false,
@@ -153,7 +162,7 @@ Page({
     });
   },
   cancel_one: function (e) {
-    console.log(e);
+    // console.log(e);
     this.setData({
       modalHidden: true,
       toast1Hidden: false,

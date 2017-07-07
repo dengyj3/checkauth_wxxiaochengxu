@@ -34,8 +34,8 @@
       <view class="mindustry-items mindustry-items-right">
         
         <view class="mindusrty-finance">
-        <image src="../images/mfinance.png" alt=""></image>
-          <text>服务认证机构</text>
+        <image src="../images/CNAS.png" alt=""></image>
+          <text>CNAS认可机构</text>
         </view>
       </view>
     </navigator> 
@@ -43,7 +43,7 @@
       <view class="mindustry-items mindustry-items-left">
         
         <view class="mindusrty-finance">
-          <image src="../images/minternet.png" alt=""></image>
+          <image src="../images/date.png" alt=""></image>
           <text>按成立年限排序</text>
         </view>
       </view>
@@ -52,7 +52,7 @@
       <view class="mindustry-items mindustry-items-right">
        
         <view class="mindusrty-finance">
-          <image src="../images/logo4.png" alt=""></image>
+          <image src="../images/number.png" alt=""></image>
           <text>按证书数量排序</text>
         </view>
       </view>

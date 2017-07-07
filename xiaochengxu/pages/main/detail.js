@@ -39,6 +39,7 @@ Page({
     // 获取系统信息 
     wx.getSystemInfo({
       success: function (res) {
+        console.log(res.windowHeight);
         _this.setData({
           winWidth: res.windowWidth,
           winHeight: res.windowHeight
@@ -53,6 +54,8 @@ Page({
           //没有记录
           
         } else if (data.retCode == '00') {
+          var logoName = data.data.instName.substr(0, 1);//截取第一个字为logo
+          data.data.logoName = logoName;
           _this.setData({
             instDetail: data.data
           });

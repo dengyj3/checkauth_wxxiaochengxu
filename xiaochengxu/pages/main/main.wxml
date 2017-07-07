@@ -1,19 +1,27 @@
 <!--pages/main/main.wxml-->
-<view class="search-container" id="search" >
+<import src="/wxSearch/wxSearch.wxml"/> 
+<!--<view class="search-container" id="search" >
   <icon bindtap="searchClickEvent" type="search" size="20"/>
-  <input id="search_value" type="text" placeholder="{{placehoder}}" bindinput="searchInputEvent"></input>
+  <input id="search_value" type="text" placeholder="{{placehoder}}"/>
 </view>
 <view class="hotquery" style="{{bvisiable}}">
-<label>热搜词:</label>
-  <navigator url="../main/main?keyword={{hotword.word1}}" redirect>
-    <label>{{hotword.word1}}</label>
+<label>热门搜索:</label>
+  <block wx:for="{{hotword}}" wx:key="item">
+  <navigator url="../main/main?keyword={{item}}">
+    <label>{{item}}</label>
   </navigator>
-  <navigator url="../main/main?keyword={{hotword.word1}}" redirect>
-    <label>{{hotword.word2}}</label>
-  </navigator>
-</view>
+  </block>
+</view>-->
 
-<scroll-view scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltolower="scrollLowerEvent">
+<view class="wxSearch-section">
+  <view class="wxSearch-pancel">
+    <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" value="{{wxSearchData.value}}" bindblur="wxSearchBlur" class="wxSearch-input" placeholder="{{placehoder}}" bindconfirm="wxSearchFn"/>
+    <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">搜索</button>
+  </view>
+</view>
+<template is="wxSearch" data="{{wxSearchData}}" />
+
+<scroll-view scroll-y="true" style="height:{{scrollHeight}}px;display:{{isShow ? 'block':'none'}};" bindscrolltolower="scrollLowerEvent">
   <view class="logo" wx:if="{{!loadingMore && totalRecord == 0 && !isInit}}">
     <icon type="cancel" color="#B0AAAA" size="50" />
     <view>
@@ -30,17 +38,18 @@
       <view class="list-item" data-bid="{{item.instCode}}">
         <view class="index-list-item">
           <view class="cover">
+            <span>{{item.logoName}}</span>
             <text>{{item.instName}}</text>
           </view>
           <view class="content">
-            <block>
+            <!--<block>-->
             <view class="title">
               <text>成立年限: {{item.ratifyDate}} | </text>
               <text>发证量: {{item.authCount}} | </text>
               <text>认证人员数量: {{item.authPersonCount}} </text>
             </view>
             
-            </block>
+            <!--</block>-->
             <view class="service-tags">
               <text>{{item.instStatus}}</text>
               <block wx:if = "{{item.cnasRec == '认可'}}">

@@ -1,14 +1,15 @@
 /* pages/main/main.wxss */
 
-page{
+page {
   min-width: 320px;
   font: 14px/150% "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
   color: #222;
   -webkit-text-size-adjust: none;
   padding: 0;
   margin: 0;
-  background-color:#f8f8f8;	
+  background-color: #f8f8f8;
 }
+@import "/wxSearch/wxSearch.wxss";
 
 .search-container {
   position: relative;
@@ -21,14 +22,16 @@ page{
   padding: 10rpx 20rpx;
   z-index: 100;
 }
+
 .search-container input {
-  background: #FFF;
-  color: #AAA;
+  background: #fff;
+  color: #aaa;
   padding: 5px 10rpx;
   height: 40rpx;
   width: 100%;
   border-radius: 8rpx;
 }
+
 .search-container icon {
   position: absolute;
   z-index: 10;
@@ -38,74 +41,96 @@ page{
 }
 
 .logo {
-  text-align:center;
-  padding-top:500rpx;
+  text-align: center;
+  padding-top: 500rpx;
   font-size: 40rpx;
   font-weight: bold;
-  color: #AAA
+  color: #aaa;
 }
 
-
 .title {
-  line-height:30px; 
+  line-height: 30px;
   margin-left: 25rpx;
 }
 
-.title text{
+.title text {
   font-size: 24rpx;
 }
 
 .cover {
-  line-height:30px; 
-  margin-left: 25rpx;
-  font-size: 18px;
+  line-height: 30px;
+  /*margin-left: 25rpx;*/
+  /*font-size: 14px;*/
   font-weight: 700;
 }
-.title image{
+
+.cover span {
+  width: 30px;
+  height: 30px;
+  background-color: #259bf3;
+  border-radius: 5px;
+  text-align: center;
+  color: #fff;
+  /*line-height: 30px;*/
+  /*font-size: 14px;*/
+  margin-right: 10px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.title image {
   width: 30rpx;
   height: 20rpx;
   position: absolute;
   display: flex;
 }
+
 /*header*/
+
 .header {
   padding: 20rpx 30rpx;
 }
+
 .header text {
-  color: #A6A6A6;
-  font-size: 35rpx
-}
-/*navigator点击时的颜色*/
-.navigator-hover {  
-    color: blue ;  
+  color: #a6a6a6;
+  font-size: 35rpx;
 }
 
-.hotquery{
-  line-height:30px; 
+/*navigator点击时的颜色*/
+
+.navigator-hover {
+  color: blue;
+}
+
+.hotquery {
+  line-height: 30px;
   margin-left: 25rpx;
 }
+
 .common-list {
   padding: 0 20rpx;
 }
-.list-item{
-	display: flex;
-	padding: 20rpx 20rpx; 
-	border-bottom: 1rpx solid #e8e8e8;
+
+.list-item {
+  display: flex;
+  padding: 20rpx 20rpx;
+  border-bottom: 1rpx solid #e8e8e8;
   border-radius: 2px;
   background-color: white;
 }
 
-.service-tags{
-	margin: 6rpx 0;
+.service-tags {
+  margin: 6rpx 0;
 }
-.service-tags text{
-	padding: 6rpx 16rpx;
-	border: 1rpx solid #f7982a;
-	line-height: 1;
-	color: #f7982a;
-	font-size: 22rpx;
-	border-radius: 4rpx;
-	margin-right: 10rpx;
-	margin-bottom: 10rpx;
-	white-space: nowrap;
+
+.service-tags text {
+  padding: 6rpx 16rpx;
+  border: 1rpx solid #f7982a;
+  line-height: 1;
+  color: #f7982a;
+  font-size: 22rpx;
+  border-radius: 4rpx;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+  white-space: nowrap;
 }
