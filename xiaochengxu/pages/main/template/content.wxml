@@ -1,6 +1,6 @@
 <template name="content">
 
-<scroll-view scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltolower="scrollLowerEvent">
+<scroll-view scroll-y="true" style="height:{{scrollHeight}}px;display:'block';" bindscrolltolower="scrollLowerEvent" bindscrolltoupper="pullDownRefresh">
   <view class="logo" wx:if="{{!loadingMore && totalRecord == 0 && !isInit}}">
     <icon type="cancel" color="#B0AAAA" size="50" />
     <view>
@@ -23,7 +23,7 @@
           <view class="content">
             <!--<block>-->
             <view class="title">
-              <text>成立年限: {{item.ratifyDate}} | </text>
+              <text>成立年限: {{item.ratifyYear}} | </text>
               <text>发证量: {{item.authCount}} | </text>
               <text>认证人员数量: {{item.authPersonCount}} </text>
             </view>
@@ -40,7 +40,7 @@
               <block wx:if = "{{item.highNewTecRec == '获得'}}">
                 <text>高新技术企业</text>  
               </block>       
-              <text>{{item.instType}}</text>
+              <!-- <text>{{item.instType}}</text> -->
             </view>
           </view>
         </view>
@@ -48,10 +48,11 @@
       </navigator>
     </block>
   </view>
-  <view class="refresh-footer" wx:if="{{loadingMore}}">
+  <!-- <view class="refresh-footer" wx:if="{{loadingMore}}">
     <icon type="waiting" size="30" color="{{footerIconColor}}" />
-  </view>
-  
+  </view> -->
+  <view class="loading" hidden="{{!loadingMore}}">正在载入更多...</view> 
+  <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view> 
 </scroll-view>
 
 </template>

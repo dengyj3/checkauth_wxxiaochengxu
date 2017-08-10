@@ -10,31 +10,31 @@
  <swiper-item>
   <!--顶部轮播图 begin-->
   <import src="../main/template/content.wxml"/>
-  <template is="content" data="{{ totalRecord,pageData,loadingMore,footerIconColor,isInit }}"/>
+  <template is="content" data="{{ totalRecord,pageData,loadingMore,footerIconColor,isInit,scrollHeight,searchLoadingComplete }}"/>
  </swiper-item>
  <swiper-item>
   <!--顶部轮播图 begin-->
   <import src="../main/template/content.wxml"/>
-  <template is="content" data="{{ totalRecord,pageData,loadingMore,footerIconColor,isInit }}"/>
+  <template is="content" data="{{ totalRecord,pageData,loadingMore,footerIconColor,isInit,scrollHeight,searchLoadingComplete }}"/>
  </swiper-item>
  <swiper-item>
   <!--顶部轮播图 begin-->
   <import src="../main/template/content.wxml"/>
-  <template is="content" data="{{ totalRecord,pageData,loadingMore,footerIconColor,isInit }}"/>
+  <template is="content" data="{{ totalRecord,pageData,loadingMore,footerIconColor,isInit,scrollHeight,searchLoadingComplete }}"/>
  </swiper-item>
  <swiper-item>
   <!--顶部轮播图 begin-->
   <import src="../main/template/content.wxml"/>
-  <template is="content" data="{{ totalRecord,pageData,loadingMore,footerIconColor,isInit }}"/>
+  <template is="content" data="{{ totalRecord,pageData,loadingMore,footerIconColor,isInit,scrollHeight,searchLoadingComplete }}"/>
  </swiper-item>
  <swiper-item>
   <!--顶部轮播图 begin-->
   <import src="../main/template/content.wxml"/>
-  <template is="content" data="{{ totalRecord,pageData,loadingMore,footerIconColor,isInit }}"/>
+  <template is="content" data="{{ totalRecord,pageData,loadingMore,footerIconColor,isInit,scrollHeight,searchLoadingComplete }}"/>
  </swiper-item>
  <swiper-item>
   <!--顶部轮播图 begin-->
   <import src="../main/template/content.wxml"/>
-  <template is="content" data="{{ totalRecord,pageData,loadingMore,footerIconColor,isInit }}"/>
+  <template is="content" data="{{ totalRecord,pageData,loadingMore,footerIconColor,isInit,scrollHeight,searchLoadingComplete }}"/>
  </swiper-item>
 </swiper>

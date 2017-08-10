@@ -1,16 +1,5 @@
-<template name="topScroll"> 
-  <swiper class="swiper" indicator-dots="{{indicatorDots}}"
-  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-    <block wx:for="{{imgUrls}}" wx:key="">
-      <swiper-item>
-        <image src="{{item}}" class="slide-image" width="100%" height="150"/>
-      </swiper-item>
-    </block>
-  </swiper>
-</template>
-
 <template name="topScroll1">
   <view class="swiper">
-    <image src="../images/banner2.png" class="slide-image" width="100%" height="150"/>
+    <image src="../images/logo.png" class="slide-image" width="100%" height="150"/>
   </view>
 </template>

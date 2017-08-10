@@ -1,17 +1,5 @@
 <!--pages/main/main.wxml-->
 <import src="/wxSearch/wxSearch.wxml"/> 
-<!--<view class="search-container" id="search" >
-  <icon bindtap="searchClickEvent" type="search" size="20"/>
-  <input id="search_value" type="text" placeholder="{{placehoder}}"/>
-</view>
-<view class="hotquery" style="{{bvisiable}}">
-<label>热门搜索:</label>
-  <block wx:for="{{hotword}}" wx:key="item">
-  <navigator url="../main/main?keyword={{item}}">
-    <label>{{item}}</label>
-  </navigator>
-  </block>
-</view>-->
 
 <view class="wxSearch-section">
   <view class="wxSearch-pancel">
@@ -21,7 +9,7 @@
 </view>
 <template is="wxSearch" data="{{wxSearchData}}" />
 
-<scroll-view scroll-y="true" style="height:{{scrollHeight}}px;display:{{isShow ? 'block':'none'}};" bindscrolltolower="scrollLowerEvent">
+<scroll-view scroll-y="true" style="height:{{scrollHeight}}px;display:{{isShow ? 'block':'none'}};" bindscrolltolower="scrollLowerEvent" bindscrolltoupper="pullDownRefresh">
   <view class="logo" wx:if="{{!loadingMore && totalRecord == 0 && !isInit}}">
     <icon type="cancel" color="#B0AAAA" size="50" />
     <view>
@@ -42,14 +30,11 @@
             <text>{{item.instName}}</text>
           </view>
           <view class="content">
-            <!--<block>-->
             <view class="title">
-              <text>成立年限: {{item.ratifyDate}} | </text>
+              <text>{{item.ratifyYear}} | </text>
               <text>发证量: {{item.authCount}} | </text>
               <text>认证人员数量: {{item.authPersonCount}} </text>
             </view>
-            
-            <!--</block>-->
             <view class="service-tags">
               <text>{{item.instStatus}}</text>
               <block wx:if = "{{item.cnasRec == '认可'}}">
@@ -60,8 +45,7 @@
               </block>
               <block wx:if = "{{item.highNewTecRec == '获得'}}">
                 <text>高新技术企业</text>  
-              </block>       
-              <text>{{item.instType}}</text>
+              </block>
             </view>
           </view>
         </view>
@@ -69,10 +53,8 @@
       </navigator>
     </block>
   </view>
-  <view class="refresh-footer" wx:if="{{loadingMore}}">
-    <icon type="waiting" size="30" color="{{footerIconColor}}" />
-  </view>
-  
+  <view class="loading" hidden="{{!loadingMore}}">正在载入更多...</view> 
+  <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view> 
 </scroll-view>
 
 

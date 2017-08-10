@@ -1,7 +1,5 @@
 <!--pages/main/detail.wxml-->
 <view class="container">
-  <!--<view class="container-body">
-    <view class="service-item service-detail">-->
   <view class="cover">
     <span>{{instDetail.logoName}}</span>
     <text>{{instDetail.instName}}</text>
@@ -10,11 +8,6 @@
     <view class="title">
       <text>浏览量: {{instDetail.pageView}} | </text>
       <text>{{instDetail.instType}}</text>
-    </view>
-    <view class="title">
-      <text>成立年限: {{instDetail.ratifyDate}} | </text>
-      <text>发证量: {{instDetail.authCount}} | </text>
-      <text>认证人员数量: {{instDetail.authPersonCount}} </text>
     </view>
     <view class="service-tags">
       <text>{{instDetail.instStatus}}</text>
@@ -27,19 +20,24 @@
       <block wx:if="{{instDetail.highNewTecRec == '获得'}}">
         <text>高新技术企业</text>
       </block>
-      <text>{{instDetail.instType}}</text>
     </view>
-    <view class="title">
-      地址: {{instDetail.address}}
-    </view>
-    <view class="title">
-      联系电话: {{instDetail.tel}}
-    </view>
-    <view class="title">
-      电子邮箱: {{instDetail.email}}
-    </view>
-    <view class="title">
-      网址: {{instDetail.website}}
+    <view class="form-list">
+      <view class="form-item">
+        <view class="form-item-hd">地址: </view>
+        <view class="form-item-bd">{{instDetail.address}}</view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-hd">联系电话: </view>
+        <view class="form-item-bd">{{instDetail.tel}}</view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-hd">电子邮箱: </view>
+        <view class="form-item-bd">{{instDetail.email}}</view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-hd">网址: </view>
+        <view class="form-item-bd">{{instDetail.website}}</view>
+      </view>
     </view>
   </view>
 
@@ -48,40 +46,52 @@
     <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">认证类别及认证领域</view>
     <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">有效证书数量</view>
     <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">认证人员数量</view>
+    <block wx:if="{{instDetail.cnasRec == '认可'}}">
+      <view class="swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="swichNav">CNAS认可领域</view>
+    </block>
   </scroll-view>
-  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight+30}}px" bindchange="bindChange">
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight+30?winHeight+'px':'auto'}}" bindchange="bindChange">
     <swiper-item>
       <view class="msection-title">
         <image src="../images/blueStrip.png"></image> 1 基本信息
       </view>
 
-      <view class="title">
-        注册号/统一社会信用代码：{{instDetail.instCode}}
-      </view>
-      <view class="title">
-        法定代表人：{{instDetail.principal}}
-      </view>
-      <view class="title">
-        注册资金：{{instDetail.regCapital}}
-      </view>
-      <view class="title">
-        机构类型：{{instDetail.instType}}
-      </view>
-      <view class="title">
-        批准号: {{instDetail.instCode}}
-      </view>
-      <view class="title">
-        批准日期: {{instDetail.ratifyDate}}
-      </view>
-      <view class="title">
-        有效日期: {{instDetail.validityDate}}
+      <view class="form-list">
+        <view class="form-item">
+          <view class="form-item-hd">注册号/统一社会信用代码：</view>
+          <view class="form-item-bd">{{instDetail.orgCode}}</view>
+        </view>
+        <view class="form-item">
+          <view class="form-item-hd">法定代表人：</view>
+          <view class="form-item-bd">{{instDetail.principal}}</view>
+        </view>
+        <view class="form-item">
+          <view class="form-item-hd">注册资金：</view>
+          <view class="form-item-bd">{{instDetail.regCapital}}</view>
+        </view>
+        <view class="form-item">
+          <view class="form-item-hd">机构类型：</view>
+          <view class="form-item-bd">{{instDetail.instType}}</view>
+        </view>
+        <view class="form-item">
+          <view class="form-item-hd">批准号: </view>
+          <view class="form-item-bd">{{instDetail.instCode}}</view>
+        </view>
+        <view class="form-item">
+          <view class="form-item-hd">批准日期: </view>
+          <view class="form-item-bd">{{instDetail.ratifyDate}}</view>
+        </view>
+        <view class="form-item">
+          <view class="form-item-hd">有效日期: </view>
+          <view class="form-item-bd">{{instDetail.validityDate}}</view>
+        </view>
       </view>
     </swiper-item>
     <swiper-item>
       <view class="msection-title">
         <image src="../images/blueStrip.png"></image> 2 认证类别及认证领域
       </view>
-      <scroll-view class="title" scroll-y="true">
+      <scroll-view class="title" scroll-y="{{true}}" style="height: {{winHeight?winHeight+'px':'auto'}}">
         <view class="table">
           <view class="tr bg-w">
             <view class="th">认证类别</view>
@@ -154,101 +164,25 @@
         </view>
       </view>
     </swiper-item>
+    <swiper-item>
+      <view class="msection-title">
+        <image src="../images/blueStrip.png"></image> 5 CNAS认可领域(截止2016-12-31)
+      </view>
+      <view class="title">
+        <view class="table" style="width:100%;text-align:center;">
+          <view class="tr1 bg-w">
+            <view class="th1" style="background:#b2b2b2;">CNAS认可领域</view>
+          </view>
+          <block wx:for="{{instDetail.cnasList}}" wx:key="{{fieldName}}">
+            <view class="tr1 bg-g" wx:if="{{index % 2 == 0}}">
+              <view class="td1">{{item.fieldName}}</view>
+            </view>
+            <view class="tr1" wx:else>
+              <view class="td1">{{item.fieldName}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </swiper-item>
   </swiper>
-
-  <!--
-      <view class="basicinfo">
-        <view class="msection-title">
-          <image src="../images/blueStrip.png"></image> 1 基本信息
-        </view>
-
-        <view class="title">
-          注册号/统一社会信用代码：{{instDetail.instCode}}
-        </view>
-        <view class="title">
-          法定代表人：{{instDetail.principal}}
-        </view>
-        <view class="title">
-          注册资金：{{instDetail.regCapital}}
-        </view>
-        <view class="title">
-          机构类型：{{instDetail.instType}}
-        </view>
-        <view class="title">
-          批准号: {{instDetail.instCode}}
-        </view>
-        <view class="title">
-          批准日期: {{instDetail.ratifyDate}}
-        </view>
-        <view class="title">
-          有效日期: {{instDetail.validityDate}}
-        </view>
-        <view class="msection-title">
-          <image src="../images/blueStrip.png"></image> 2 认证类别及认证领域
-        </view>
-        <view class="title">
-          <view class="table">
-            <view class="tr bg-w">
-              <view class="th">认证类别</view>
-              <view class="th">认证领域</view>
-            </view>
-            <block wx:for="{{instDetail.authTypeAreaTempEntities}}" wx:key="{{typeName}}">
-              <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
-                <view class="td">{{item.typeName}}</view>
-                <view class="td">{{item.authAreaName}}</view>
-              </view>
-              <view class="tr" wx:else>
-                <view class="td">{{item.typeName}}</view>
-                <view class="td">{{item.authAreaName}}</view>
-              </view>
-            </block>
-          </view>
-        </view>
-        <view class="msection-title">
-          <image src="../images/blueStrip.png"></image> 3 有效证书数量(截止2016-12-31)
-        </view>
-        <view class="title">
-          <view class="table">
-            <view class="tr bg-w">
-              <view class="th">认证类别</view>
-              <view class="th">有效证书总数</view>
-            </view>
-            <block wx:for="{{instDetail.authInstStaticsEntity.groupStaticsList}}" wx:key="{{typeName}}">
-              <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
-                <view class="td">{{item.typeName}}</view>
-                <view class="td">{{item.authNum}}</view>
-              </view>
-              <view class="tr" wx:else>
-                <view class="td">{{item.typeName}}</view>
-                <view class="td">{{item.authNum}}</view>
-              </view>
-            </block>
-          </view>
-        </view>
-        <view class="msection-title">
-          <image src="../images/blueStrip.png"></image> 4 认证人员数量(截止2016-12-31)
-        </view>
-        <view class="title">
-          <view class="table">
-            <view class="tr bg-w">
-              <view class="th">认证类别</view>
-              <view class="th">认证人员数量</view>
-            </view>
-            <block wx:for="{{instDetail.authInstStaticsEntity.groupStaticsList}}" wx:key="{{typeName}}">
-              <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
-                <view class="td">{{item.typeName}}</view>
-                <view class="td">{{item.personNum}}</view>
-              </view>
-              <view class="tr" wx:else>
-                <view class="td">{{item.typeName}}</view>
-                <view class="td">{{item.personNum}}</view>
-              </view>
-            </block>
-          </view>
-        </view>
-
-      </view>-->
-  <!--</view>
-  </view>-->
-
 </view>

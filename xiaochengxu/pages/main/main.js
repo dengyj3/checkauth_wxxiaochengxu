@@ -23,7 +23,9 @@ Page({
     bvisiable: 'display:block',//设置热搜词是否显示
     hotword: [],//热搜词
     placehoder: "",//搜索框提示信息
-    isShow:false
+    isShow:false,
+    pageSize : 15,//返回数据个数
+    searchLoadingComplete: false //“没有数据”的变量，默认false，隐藏 
   },
 
   /**
@@ -73,10 +75,11 @@ Page({
           }
         }, () => {
           // _this.setData({ totalRecord: 0 });
+          //console.log("failed ....... "+_this.data.data);
         }, () => {
           // _this.setData({ loadingMore: false });
-          _this.setData({ hotword: tmp, isInit: false, placehoder: "请输入机构名称" });
-          // console.log(_this.data.hotword);
+          _this.setData({ hotword: tmp, placehoder: "请输入机构名称" });
+          //console.log("hotword is : "+_this.data.hotword);
           //初始化的时候渲染wxSearchdata 第二个为你的search高度
           WxSearch.init(_this, 43, _this.data.hotword);
           // WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
@@ -84,15 +87,15 @@ Page({
         // console.log("abc is ....... "+tmp);
       } else if (name == "认证领域") {
         flag = "2";
-        _this.setData({ isInit: false, placehoder: "请输入认证领域" });
+        _this.setData({  placehoder: "请输入认证领域" });
         WxSearch.init(_this, 43, ["管理体系认证", "服务认证", "自愿性工业产品认证", "自愿性农产品认证","强制性产品认证"]);
       } else if (name == "所在地区") {
         flag = "3";
-        _this.setData({ isInit: false, placehoder: "请输入地区" });
+        _this.setData({  placehoder: "请输入地区" });
         WxSearch.init(_this, 43, ["北京", "上海", "广州", "深圳"]);
       } else if (name == "认可情况") {
         flag = "4";
-        _this.setData({ isInit: false, placehoder: "请输入认可情况" });
+        _this.setData({  placehoder: "请输入认可情况" });
         WxSearch.init(_this, 43, ["cnas认可", "境外认可"]);
       } 
     
@@ -164,31 +167,39 @@ Page({
   },
   //下拉请求数据
   scrollLowerEvent: function (e) {
-    if (this.data.loadingMore)
+    let that = this;
+    if (that.data.loadingMore && that.data.searchLoadingComplete){//如果没有数据了,则直接返回
       return;
-    requestData.call(this);
+    }else{//如果有数据,则当前页码+1
+      that.setData({pageIndex : that.data.pageIndex+1})
+      updateRefreshBall.call(that);
+      requestData.call(that);
+    }
   },
-  
+  pullDownRefresh: function (e){
+    // console.log("call download......");
+    //requestData.call(this);
+  },
   searchInputEvent: function (e) {
     this.setData({
       searchKey: e.detail.value
     })
   },
-  searchClick: function (e) {
-    
-    this.setData({ searchKey: e.detail.value, pageIndex: 0, pageData: [] });
-    requestData.call(this);
+  // searchClick: function (e) {
+  //   var that = this;
+  //   that.setData({ searchKey: e.detail.value, pageIndex: 0, pageData: [] });
+  //   requestData.call(that);
 
-  },
+  // },
   wxSearchFn: function (e) {
     // console.log("query is ...... "+this.data.searchKey);
     var that = this
     WxSearch.wxSearchAddHisKey(that);
-    if (!this.data.searchKey) {
+    if (!that.data.searchKey) {
       return;
     }
-    this.setData({ pageIndex: 0, pageData: [], isShow:true });
-    requestData.call(this);
+    that.setData({ pageIndex: 0, pageData: [], isShow: true, searchLoadingComplete: false });
+    requestData.call(that);
     // console.log("search data is ...... " + that.data.wxSearchData.value)
   },
   wxSearchInput: function (e) {
@@ -202,7 +213,7 @@ Page({
     var that = this
     that.setData({isShow:false});
     WxSearch.wxSearchFocus(e, that);
-    // console.log("view is ...... "+that.data.wxSearchData.view);
+    // console.log("focus view is ...... " + this.data.wxSearchData.view);
   },
   wxSearchBlur: function (e) {
     var that = this
@@ -210,6 +221,7 @@ Page({
   },
   wxSearchKeyTap: function (e) {
     var that = this
+    // console.log("this.searchKey is : "+that.data.wxSearchData.value);
     WxSearch.wxSearchKeyTap(e, that);
     that.setData({
       searchKey: that.data.wxSearchData.value
@@ -236,21 +248,26 @@ Page({
  * 请求页面数据
  */
 function requestData() {
-  var _this = this;
-  var q = this.data.searchKey;
-  var start = this.data.pageIndex;
-
-  this.setData({ loadingMore: true, isInit: false });
-  updateRefreshBall.call(this);
+  let _this = this;
+  var q = _this.data.searchKey;
+  var start = _this.data.pageIndex;
+  var pageSize = _this.data.pageSize;
+  // console.log(start);
+  //_this.setData({ loadingMore: true, isInit: false });
+  // updateRefreshBall.call(_this);
   //请求之前清空列表数据
-  _this.setData({
-    pageData: [],
-    totalRecord: 0
-  });
+  if(_this.isInit){//如果是首次加载,清空数据
+    _this.setData({
+      pageData: [],
+      totalRecord: 0
+    });
+  }
+  _this.setData({ loadingMore: true, isInit: false });
   requests.requestSearchInstByKeyWord({
     pageNum: start, 
     queryContent: q,
-    queryFlag: flag
+    queryFlag: flag,
+    pageSize: pageSize
   }, (data) => {
     // console.log(data.retCode);
     if (data.retCode == '02') {
@@ -259,16 +276,42 @@ function requestData() {
     } else if(data.retCode == '00') {
       // console.log(data.data);
       /*var obj = JSON.parse(data.data);*/
-      for (var i = 0; i < data.data.pageList.length;i++){
-        var logoName = data.data.pageList[i].instName.substr(0,1);
-        data.data.pageList[i].logoName = logoName;//截取第一个字为logo
+      var myDate = new Date();
+      var currentYear = myDate.getFullYear();//获得当前年份
+      var countYear = 0;
+      var ratifyYear = "";
+      // console.log(data.data.pageList.length);
+      if (data.data.pageList.length>0){      
+        for (var i = 0; i < data.data.pageList.length;i++){
+          var logoName = data.data.pageList[i].instName.substr(0,1);
+          data.data.pageList[i].logoName = logoName;//截取第一个字为logo
+          countYear = currentYear - data.data.pageList[i].ratifyDate.split('-')[0];
+          if(countYear<1){
+            ratifyYear = "成立不足1年";
+          }else if (countYear < 5){
+            ratifyYear = "成立1到5年";
+          } else if (countYear < 10) {
+            ratifyYear = "成立5到10年";
+          } else if (countYear < 15) {
+            ratifyYear = "成立10到15年";
+          } else {
+            ratifyYear = "成立15年以上";
+          }
+          data.data.pageList[i].ratifyYear = ratifyYear;
+        }
+        _this.setData({
+          pageData: _this.data.pageData.concat(data.data.pageList),
+          pageIndex: start + 1,
+          totalRecord: data.data.total,
+          bvisiable: "display:none"
+        });
+      }else{
+        // console.log("没有数据了......");
+        _this.setData({
+          searchLoadingComplete: true, //把“没有数据”设为true，显示 
+          loadingMore: false //把"上拉加载"的变量设为false，隐藏 
+        }); 
       }
-      _this.setData({
-        pageData: _this.data.pageData.concat(data.data.pageList),
-        pageIndex: start + 1,
-        totalRecord: data.data.total,
-        bvisiable: "display:none"
-      });
     }
   }, () => {
     _this.setData({ totalRecord: 0 });

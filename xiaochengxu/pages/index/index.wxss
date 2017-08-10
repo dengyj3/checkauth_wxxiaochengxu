@@ -1,13 +1,20 @@
 /**index.wxss**/
+
 /********** 初始化 **********/
-view,scroll-view,swiper,swiper-item,icon,text,progress,mask,input,button,label,form,checkbox,checkbox-group,picker,picker-item,radio,radio-group,switch,slider,slector-item,action-sheet,action-sheet-cancel,action-sheet-item,loading,toast,modal,navigator,image,audio,video,map,canvas,native{
-  margin:0;
+
+view, scroll-view, swiper, swiper-item, icon, text, progress, mask, input,
+button, label, form, checkbox, checkbox-group, picker, picker-item, radio,
+radio-group, switch, slider, slector-item, action-sheet, action-sheet-cancel,
+action-sheet-item, loading, toast, modal, navigator, image, audio, video, map,
+canvas, native {
+  margin: 0;
   padding: 0;
 }
-page{
+
+page {
   min-width: 320px;
   font: 14px/150% "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
-  color: #333333;
+  color: #333;
   -webkit-text-size-adjust: none;
   padding: 0;
   margin: 0;
@@ -15,20 +22,45 @@ page{
 }
 
 /* 禁止长按链接与图片弹出菜单 */
-navigator,image {-webkit-touch-callout: none;touch-callout: none;}
+
+navigator, image {
+  -webkit-touch-callout: none;
+  touch-callout: none;
+}
 
 /*图片大小自适应*/
-image{
+
+image {
   width: 100%;
   /*vertical-align: top;*/
   display: block;
 }
-.clearfix{zoom: 1; clear:both;}
-.clearfix:after {display: block;height: 0;overflow: hidden;content: " ";visibility: hidden;clear: both;}
-.mt30 {margin-top: 30rpx;}
-/*box-sizing包括边框的宽度*/
-.box-sizing {-moz-box-sizing: border-box;-o-box-sizing: border-box;box-sizing: border-box;}
 
+.clearfix {
+  zoom: 1;
+  clear: both;
+}
+
+.clearfix:after {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  content: " ";
+  visibility: hidden;
+  clear: both;
+}
+
+.mt30 {
+  margin-top: 30rpx;
+}
+
+/*box-sizing包括边框的宽度*/
+
+.box-sizing {
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
 .search-container {
   position: absolute;
@@ -43,14 +75,16 @@ image{
   padding: 10rpx 20rpx;
   z-index: 100;
 }
+
 .search-container input {
-  background: #FFF;
-  color: #AAA;
+  background: #fff;
+  color: #aaa;
   padding: 5px 10rpx;
   height: 40rpx;
   width: 100%;
   border-radius: 8rpx;
 }
+
 .search-container icon {
   position: absolute;
   z-index: 10;
@@ -63,43 +97,50 @@ image{
   height: 330rpx;
   width: 100%;
 }
+
 .swiper image {
   height: 100%;
   width: 100%;
 }
 
 /*导航begin*/
+
 .navlist {
-    background-color: #fff;
-    /*padding-top: 1rem;
+  background-color: #fff;
+  /*padding-top: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;*/
 }
-.navlist navigator {
-    width: 5.0rem;
-    float: left;
-    margin-bottom: 20rpx;
-    text-align: center;
-    line-height: 30rpx;
-    /*font-size: 24rpx;*/
-    color: #222;
-    display: block;
 
-    /*display: flex;
+.navlist navigator {
+  width: 5.0rem;
+  float: left;
+  margin-bottom: 20rpx;
+  text-align: center;
+  line-height: 30rpx;
+  /*font-size: 24rpx;*/
+  color: #222;
+  display: block;
+  /*display: flex;
     justify-content: space-around;
     align-items: center;
     margin: 10rpx;
     border-radius: 30%;
     height: 75%;
     background:#00CD0D;*/
+}
 
+.navlist navigator.navlist4n {
+  margin-right: 0;
 }
-.navlist navigator.navlist4n{margin-right: 0;}
+
 .navlist image:first-child {
-    margin-bottom: 10rpx;
+  margin-bottom: 10rpx;
 }
+
 /*添加遮罩效果*/
-.navlist .imgitem{
+
+.navlist .imgitem {
   -webkit-transform-origin: 50% 150px;
   transform-origin: 50% 150px;
   margin: 0 auto;
@@ -109,20 +150,22 @@ image{
   width: 50px;
   /*background-color: lightgray;#77c2fc;*/
   text-align: center;
-  border-radius: 20px 20px 20px 20px;/*设置圆角边,如果是圆则只设置一个属性50%*/
+  border-radius: 20px 20px 20px 20px; /*设置圆角边,如果是圆则只设置一个属性50%*/
 }
 
 .navlist image {
-    width: 2.5rem;
-    height: 2.5rem;
-    margin: auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: auto;
 }
+
 .m-specing {
-    background: #f8f8f8;
+  background: #f8f8f8;
 }
+
 .m-specing, .m-specing2 {
-    width: 100%;
-    height: 15rpx;
+  width: 100%;
+  height: 15rpx;
 }
 
 /*
@@ -134,105 +177,119 @@ image{
 /*导航end*/
 
 /*热门查询*/
+
 .floor-title {
-    height: 96rpx;
-    line-height: 96rpx;
-    text-align: left;
-    color: #222;
-    font-size: 34rpx;
-    font-weight: bold;
-    position: relative;
-    background-color: white;
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: left;
+  color: #222;
+  font-size: 34rpx;
+  font-weight: bold;
+  position: relative;
+  background-color: white;
 }
+
 .floor-title text {
-    color: #b9e1f0;
-    font-size: 30rpx;
-    padding-right: 14rpx;
+  color: #b9e1f0;
+  font-size: 30rpx;
+  padding-right: 14rpx;
 }
-.floor-title icon{
+
+.floor-title icon {
   position: absolute;
-    top: 40rpx;
-    width: 0;
-    height: 0;
-    line-height: 0;
-    font-size: 0;
-    border-top: 10rpx solid transparent;
-    border-bottom: 10rpx solid transparent;
-    border-left: 10rpx solid #222222;
+  top: 40rpx;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  font-size: 0;
+  border-top: 10rpx solid transparent;
+  border-bottom: 10rpx solid transparent;
+  border-left: 10rpx solid #222;
 }
+
 /*公用title end*/
 
 /*热门查询下面内容 begin*/
 
 .msection-title {
-    font-size: 18px;
-    font-weight: 700;
-    margin: 0px 0 20px  0;
-    padding-left: 15px;
-    background-size: 5px 25px;
-    position: relative;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0px 0 20px 0;
+  padding-left: 15px;
+  background-size: 5px 25px;
+  position: relative;
 }
 
-.msection-title image{
-  margin-left: -30rpx;
-  width: 10rpx;
-  height: 45rpx;
+.msection-title image {
+  margin-left: -15px;
+  width: 5px;
+  height: 25px;
+  /* background-image: src("../images/blueStrip.png"); */
   position: absolute;
   text-align: left;
-  
 }
 
 .mindustry-main {
-    width: 100%;
-    overflow: hidden;
-}
-.mindustry-items-left {
-    padding-left: 15px;
-    padding-right: 7.5px;
-}
-.mindustry-items-right {
-    padding-left: 7.5px;
-    padding-right: 15px;
-}
-.mindustry-items {
-    width: 50%;
-    float: left;
-    overflow: hidden;
-}
-.mindustry-items, .mreading-items {
-    margin-bottom: 15px;
-}
-.mindustry-items view {
-    width: 100%;
-    border: 1px solid #e3e3e3;
-    border-radius: 2px;
-    height: 60px;
-    display: inline-block;
-    /*float: left;*/
-    line-height: 60px;
-    text-align: right;
-    padding: 10px 20px;
-    font-size: 14px;
-    color: #43464f;
-    background-position: 20rpx 10rpx;
-    background-size: 39px;
-}
-.about-us-header, .mbutton-bottom, .mindustry-drop-down, .mindustry-items, .mindustry-items view, .mreading-items-img, .msearch-input, .mselect-city-items, .mtop-search-section, .mtrademark-list-left {
-    box-sizing: border-box;
-}
-.mindustry-items text {
-    font-size: 14px;
-    color: #43464f;
-    display: block;
-    float: right;
-    line-height: 38px;
-    margin-right: -30rpx;
-}
-.mindusrty-finance {
-    background: left center no-repeat #fbfbfb;
+  width: 100%;
+  overflow: hidden;
 }
 
-.mindusrty-finance image{
+.mindustry-items-left {
+  padding-left: 15px;
+  padding-right: 7.5px;
+}
+
+.mindustry-items-right {
+  padding-left: 7.5px;
+  padding-right: 15px;
+}
+
+.mindustry-items {
+  width: 50%;
+  float: left;
+  overflow: hidden;
+}
+
+.mindustry-items, .mreading-items {
+  margin-bottom: 15px;
+}
+
+.mindustry-items view {
+  width: 100%;
+  border: 1px solid #e3e3e3;
+  border-radius: 2px;
+  height: 60px;
+  display: inline-block;
+  /*float: left;*/
+  line-height: 60px;
+  text-align: right;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #43464f;
+  background-position: 20rpx 10rpx;
+  background-size: 39px;
+}
+
+.about-us-header, .mbutton-bottom, .mindustry-drop-down, .mindustry-items,
+.mindustry-items view, .mreading-items-img, .msearch-input, .mselect-city-items,
+.mtop-search-section, .mtrademark-list-left {
+  box-sizing: border-box;
+}
+
+.mindustry-items text {
+  font-size: 14px;
+  color: #43464f;
+  display: block;
+  float: right;
+  line-height: 38px;
+  margin-right: -30rpx;
+}
+
+.mindusrty-finance {
+  background: left center no-repeat #fbfbfb;
+}
+
+.mindusrty-finance image {
   width: 80rpx;
   height: 80rpx;
   position: absolute;
@@ -242,29 +299,34 @@ image{
 }
 
 .mindusrty-estate {
-    background: left center no-repeat #fbfbfb;
+  background: left center no-repeat #fbfbfb;
 }
+
 .mindusrty-internet {
-    background: left center no-repeat #fbfbfb;
+  background: left center no-repeat #fbfbfb;
 }
+
 .mindusrty-manufacturing {
-    background: left center no-repeat #fbfbfb;
+  background: left center no-repeat #fbfbfb;
 }
+
 .mindusrty-communication {
-    background: left center no-repeat #fbfbfb;
+  background: left center no-repeat #fbfbfb;
 }
+
 .mindusrty-medical {
-    background: left center no-repeat #fbfbfb;
+  background: left center no-repeat #fbfbfb;
 }
-.mindustry-section{
-	background:#fff;
-	padding-top:20px;
-	margin-bottom:20px;
-	}
+
+.mindustry-section {
+  background: #fff;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
 
 /*热门查询 end*/
 
-.image-style{
+.image-style {
   position: absolute;
   bottom: 10px;
   right: 10px;

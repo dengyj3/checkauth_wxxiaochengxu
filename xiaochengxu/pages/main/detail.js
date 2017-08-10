@@ -20,26 +20,10 @@ Page({
    */
   onLoad: function (options) {
     const instCode = options.instCode;
-    console.log("instCode is ...... " + instCode);
     var _this = this;
-    /*this.setData({
-      instDetail: {
-        "id": 1,
-        "companyName": "CHINA-ISUR",
-        "logoName": "isur",
-        "rafiydate": "2002-01-01",
-        "status": "有效",
-        "cnas": "CNAS认可",
-        "out": "境外认可",
-        "hinew": "高新技术企业",
-        "instType": "上市公司"
-      }
-
-    })*/
     // 获取系统信息 
     wx.getSystemInfo({
       success: function (res) {
-        console.log(res.windowHeight);
         _this.setData({
           winWidth: res.windowWidth,
           winHeight: res.windowHeight
