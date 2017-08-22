@@ -8,7 +8,7 @@
 <!--顶部搜索 begin-->
 <view class="search-container" id="search">
   <icon type="search" size="20" bindtap="getResult"/>
-  <input id="search_value" type="text" placeholder="请输入机构名称,认证领域, 地区等" bindinput="getInput" bindconfirm="seachClick"></input>
+  <input id="search_value" type="text" placeholder="请输入机构名称，认证领域，地区等" bindinput="getInput" bindconfirm="seachClick"></input>
 </view>
 <!--顶部搜索 end-->
 

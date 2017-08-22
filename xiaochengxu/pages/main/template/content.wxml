@@ -23,7 +23,7 @@
           <view class="content">
             <!--<block>-->
             <view class="title">
-              <text>成立年限: {{item.ratifyYear}} | </text>
+              <text>{{item.ratifyYear}} | </text>
               <text>发证量: {{item.authCount}} | </text>
               <text>认证人员数量: {{item.authPersonCount}} </text>
             </view>

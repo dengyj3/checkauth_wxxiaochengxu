@@ -5,19 +5,19 @@
     <view class="form-item">
       <view class="form-item-hd">姓名：</view>
       <view class="form-item-bd">
-        <input type="text" placeholder-class="input-placeholder" name="userName" placeholder="请输入姓名" />
+        <input type="text" placeholder-class="input-placeholder" name="userName" placeholder="请输入姓名" value="{{userName}}"/>
       </view>
     </view>
     <view class="form-item">
       <view class="form-item-hd">手机号码：</view>
       <view class="form-item-bd">
-        <input type="number" placeholder-class="input-placeholder" name="tel" placeholder="请输入手机号码" maxlength="11" />
+        <input type="number" placeholder-class="input-placeholder" name="tel" placeholder="请输入手机号码" maxlength="11" value="{{tel}}"/>
       </view>
     </view>
     <view class="form-item">
       <!--<view class="form-item-hd">意见建议：</view>-->
       <view class="form-item-bd">
-        <textarea name="advice" placeholder="对页面体验如何,有没有找到您想要的信息,欢迎提出您的宝贵意见或建议......" />
+        <textarea name="advice" placeholder="对页面体验如何,有没有找到您想要的信息,欢迎提出您的宝贵意见或建议......" value="{{advice}}"/>
       </view>
     </view>
 
@@ -44,7 +44,7 @@
   </block>
   -->
     <view style="display:flex;margin-top:30px;">
-      <button style="width:30%;" formType="submit">提交</button>
+      <button style="width:30%;" formType="submit" type="primary">提交</button>
       <button style="width:30%" formType="reset">重置</button>
     </view>
   </view>

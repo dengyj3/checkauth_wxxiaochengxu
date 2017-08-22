@@ -1,5 +1,7 @@
 <template name="topScroll1">
   <view class="swiper">
     <image src="../images/logo.png" class="slide-image" width="100%" height="150"/>
+    <text style="position:absolute;top:60rpx;font-size:18px;left:196rpx;font-weight:bold;">中 认 宝，传 递 信 任</text>
+    <text style="position:absolute;top:120rpx;font-size:14px;left:196rpx;">——让认证与您更亲近——</text>
   </view>
 </template>

@@ -66,7 +66,7 @@ Page({
     return {
       title: '中认宝',
       desc: '中认宝!',
-      path: '/index/index'
+      path: '/pages/index/index'
     }
   },
   //意见收集图标移动事件

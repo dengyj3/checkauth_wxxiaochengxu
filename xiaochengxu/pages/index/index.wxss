@@ -25,7 +25,7 @@ page {
 
 navigator, image {
   -webkit-touch-callout: none;
-  touch-callout: none;
+  /* touch-callout: none; */
 }
 
 /*图片大小自适应*/
@@ -113,12 +113,13 @@ image {
 }
 
 .navlist navigator {
-  width: 5.0rem;
+  /* width: 5.0rem; */
+   width: 25%; 
   float: left;
   margin-bottom: 20rpx;
   text-align: center;
   line-height: 30rpx;
-  /*font-size: 24rpx;*/
+  font-size: 12px;
   color: #222;
   display: block;
   /*display: flex;
@@ -277,12 +278,13 @@ image {
 }
 
 .mindustry-items text {
-  font-size: 14px;
+  font-size: 28rpx;
   color: #43464f;
   display: block;
   float: right;
   line-height: 38px;
   margin-right: -30rpx;
+  width:100px;
 }
 
 .mindusrty-finance {

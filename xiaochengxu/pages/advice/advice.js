@@ -103,6 +103,11 @@ Page({
         //没有记录
       } else if (data.retCode == '00') {
         // console.log(data.data);
+        that.setData({
+          userName:"",
+          tel:"",
+          advice:""
+        })
         that.modalTap();//提交成功弹出提示信息
         //提交完成,返回上层页面
         /*wx.navigateBack({
