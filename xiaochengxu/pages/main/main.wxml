@@ -2,12 +2,20 @@
 <import src="/wxSearch/wxSearch.wxml"/> 
 
 <view class="wxSearch-section">
-  <view class="wxSearch-pancel">
-    <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" value="{{wxSearchData.value}}" bindblur="wxSearchBlur" class="wxSearch-input" placeholder="{{placehoder}}" bindconfirm="wxSearchFn"/>
+  <view class="wxSearch-pancel"><!-- value不能为wxSearchData, 否则真机上不显示 -->
+    <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" value="{{searchKey}}" bindblur="wxSearchBlur" class="wxSearch-input" placeholder="{{placehoder}}" bindconfirm="wxSearchFn"/>
     <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">搜索</button>
   </view>
 </view>
+<block wx:if="{{flagType == 3}}">
+   <!-- <view class="show" wx:if="{{isShowCity}}">{{address}}</view>  -->
+  <!-- <button class="choose" bindtap="choosearea" type="primary" size="mini" plain="true">选择地址</button> -->
+  <import src="../main/template/city.wxml"/> 
+  <template is="city" data="{{isShowCity,proviceData,cityData,showDistrict,districtData}}"></template>
+</block>
+<block wx:else>
 <template is="wxSearch" data="{{wxSearchData}}" />
+</block>
 
 <scroll-view scroll-y="true" style="height:{{scrollHeight}}px;display:{{isShow ? 'block':'none'}};" bindscrolltolower="scrollLowerEvent" bindscrolltoupper="pullDownRefresh">
   <view class="logo" wx:if="{{!loadingMore && totalRecord == 0 && !isInit}}">
@@ -40,12 +48,12 @@
               <block wx:if = "{{item.cnasRec == '认可'}}">
                 <text>CNAS{{item.cnasRec}}</text>
               </block>
-              <block wx:if = "{{item.outsideRec == '认可'}}">
+              <!-- <block wx:if = "{{item.outsideRec == '认可'}}">
                 <text>境外{{item.outsideRec}}</text>
               </block>
               <block wx:if = "{{item.highNewTecRec == '获得'}}">
                 <text>高新技术企业</text>  
-              </block>
+              </block> -->
             </view>
           </view>
         </view>

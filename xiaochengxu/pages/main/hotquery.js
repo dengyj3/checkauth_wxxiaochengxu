@@ -172,15 +172,15 @@ function requestData() {
           data.data.pageList[i].logoName = logoName;//截取第一个字为logo
           countYear = currentYear - data.data.pageList[i].ratifyDate.split('-')[0];
           if (countYear < 1) {
-            ratifyYear = "成立不足1年";
+            ratifyYear = "批准不足1年";
           } else if (countYear < 5) {
-            ratifyYear = "成立1到5年";
+            ratifyYear = "批准1到5年";
           } else if (countYear < 10) {
-            ratifyYear = "成立5到10年";
+            ratifyYear = "批准5到10年";
           } else if (countYear < 15) {
-            ratifyYear = "成立10到15年";
+            ratifyYear = "批准10到15年";
           } else {
-            ratifyYear = "成立15年以上";
+            ratifyYear = "批准15年以上";
           }
           data.data.pageList[i].ratifyYear = ratifyYear;
         }

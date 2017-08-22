@@ -1,25 +1,25 @@
 <!--pages/main/detail.wxml-->
 <view class="container">
   <view class="cover">
-    <span>{{instDetail.logoName}}</span>
+    <view>{{instDetail.logoName}}</view>
     <text>{{instDetail.instName}}</text>
   </view>
   <view class="content">
-    <view class="title">
+    <view class="title t1">
       <text>浏览量: {{instDetail.pageView}} | </text>
       <text>{{instDetail.instType}}</text>
     </view>
-    <view class="service-tags">
+    <view class="service-tags s1">
       <text>{{instDetail.instStatus}}</text>
       <block wx:if="{{instDetail.cnasRec == '认可'}}">
         <text>CNAS{{instDetail.cnasRec}}</text>
       </block>
-      <block wx:if="{{instDetail.outsideRec == '认可'}}">
+      <!-- <block wx:if="{{instDetail.outsideRec == '认可'}}">
         <text>境外{{instDetail.outsideRec}}</text>
       </block>
       <block wx:if="{{instDetail.highNewTecRec == '获得'}}">
         <text>高新技术企业</text>
-      </block>
+      </block> -->
     </view>
     <view class="form-list">
       <view class="form-item">
@@ -41,17 +41,17 @@
     </view>
   </view>
 
-  <scroll-view class="swiper-tab" scroll-x="true" style=" white-space: nowrap; display: flex">
-    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">基本信息</view>
-    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">认证类别及认证领域</view>
-    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">有效证书数量</view>
-    <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">认证人员数量</view>
+  <view class="btn-area">
+    <label data-num="1" class="{{_num == 1 ? 'active' : ''}}" bindtap="tapBaseInfo">基本信息</label>
+    <label data-num="2" class="{{_num == 2 ? 'active' : ''}}" bindtap="tapAuthArea">认证领域</label>
+    <label data-num="3" class="{{_num == 3 ? 'active' : ''}}" bindtap="tapCerNum">证书数量</label>
+    <label data-num="4" class="{{_num == 4 ? 'active' : ''}}" bindtap="tapPerNum">人员数量</label>
     <block wx:if="{{instDetail.cnasRec == '认可'}}">
-      <view class="swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="swichNav">CNAS认可领域</view>
+      <label data-num="5" class="{{_num == 5 ? 'active' : ''}}" bindtap="tapCNASArea">CNAS认可</label>
     </block>
-  </scroll-view>
-  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight+30?winHeight+'px':'auto'}}" bindchange="bindChange">
-    <swiper-item>
+  </view> 
+  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" style="height:{{winHeight}}px;">
+    <view id="baseInfo" class="scroll-view-item bc_green">
       <view class="msection-title">
         <image src="../images/blueStrip.png"></image> 1 基本信息
       </view>
@@ -86,13 +86,12 @@
           <view class="form-item-bd">{{instDetail.validityDate}}</view>
         </view>
       </view>
-    </swiper-item>
-    <swiper-item>
+    </view>
+    <view id="authArea"  class="scroll-view-item bc_red">
       <view class="msection-title">
         <image src="../images/blueStrip.png"></image> 2 认证类别及认证领域
       </view>
-      <scroll-view class="title" scroll-y="{{true}}" style="height: {{winHeight?winHeight+'px':'auto'}}">
-        <view class="table">
+      <view class="table">
           <view class="tr bg-w">
             <view class="th">认证类别</view>
             <view class="th">认证领域</view>
@@ -102,7 +101,7 @@
               <view class="td">{{item.typeName}}</view>
               <view class="td" style="text-align: left;">
                 <block wx:for="{{item.areaList}}" wx:key="">
-                  {{item.keyValue}}<text>\n</text>
+                  <view class="classname">{{item.keyValue}}</view>
                 </block>
               </view>
             </view>
@@ -110,15 +109,14 @@
               <view class="td">{{item.typeName}}</view>
               <view class="td" style="text-align: left;">
                 <block wx:for="{{item.areaList}}" wx:key="">
-                  {{item.keyValue}}<text>\n</text>
+                  <view class="classname">{{item.keyValue}}</view>
                 </block>
               </view>
             </view>
           </block>
         </view>
-      </scroll-view>
-    </swiper-item>
-    <swiper-item>
+    </view>
+    <view id="cerNum" class="scroll-view-item bc_yellow">
       <view class="msection-title">
         <image src="../images/blueStrip.png"></image> 3 有效证书数量(截止2016-12-31)
       </view>
@@ -140,8 +138,8 @@
           </block>
         </view>
       </view>
-    </swiper-item>
-    <swiper-item>
+    </view>
+    <view id="perNum" class="scroll-view-item bc_blue">
       <view class="msection-title">
         <image src="../images/blueStrip.png"></image> 4 认证人员数量(截止2016-12-31)
       </view>
@@ -163,13 +161,13 @@
           </block>
         </view>
       </view>
-    </swiper-item>
-    <swiper-item>
+    </view>
+    <view class="cnasArea" wx:if="{{instDetail.cnasRec == '认可'}}">
       <view class="msection-title">
         <image src="../images/blueStrip.png"></image> 5 CNAS认可领域(截止2016-12-31)
       </view>
-      <view class="title">
-        <view class="table" style="width:100%;text-align:center;">
+      <view class="title" style="display:block;">
+        <view class="table" style="text-align:center;">
           <view class="tr1 bg-w">
             <view class="th1" style="background:#b2b2b2;">CNAS认可领域</view>
           </view>
@@ -183,6 +181,8 @@
           </block>
         </view>
       </view>
-    </swiper-item>
-  </swiper>
+    </view>
+  </scroll-view>
+
+  
 </view>

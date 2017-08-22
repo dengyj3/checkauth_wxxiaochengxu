@@ -1,11 +1,17 @@
 // pages/main/main.js
+import { Promise } from '../../utils/util';
 var requests = require('../../requests/request.js');
 var WxSearch = require('../../wxSearch/wxSearch.js')
 //刷新动态球颜色
 var iconColor = [
   '#42BD56', '#31A040'
 ];
-var flag="";
+/**
+ *  查询接口
+ */
+// const API = 'http://localhost:8080/checkauth/region/queryAreaByRegionCode?regionId=';
+const API = 'https://www.renzhengbao.org/checkauth/region/queryAreaByRegionCode?regionId=';
+
 Page({
 
   /**
@@ -25,7 +31,8 @@ Page({
     placehoder: "",//搜索框提示信息
     isShow:false,
     pageSize : 15,//返回数据个数
-    searchLoadingComplete: false //“没有数据”的变量，默认false，隐藏 
+    searchLoadingComplete: false, //"没有数据"的变量,默认false,隐藏
+    flagType: 0,//从首页导航请求的类型标识,默认为0即从首页搜索框请求过来 
   },
 
   /**
@@ -34,24 +41,20 @@ Page({
   onLoad: function (options) {
     var _this = this;
     const keyword = options.keyword;
-    // console.log(keyword)
     const index = options.index;
-    // console.log(index)
     if(index == 0){//如果是首页搜索框直接过来的
-      flag = "0";//flag默认置0
       _this.setData({
         bvisiable: "display:none",
         searchKey: keyword,
-        isShow:true
+        isShow:true,
+        pageIndex: 0, 
+        pageData: []
       });
-      _this.setData({ pageIndex: 0, pageData: [] });
       WxSearch.init(_this, 43, ["管理体系认证", "服务认证", "自愿性工业产品认证", "自愿性农产品认证", "强制性产品认证"]);
       requestData.call(_this);
+      return;
     }
 
-    if (keyword != undefined) {//按关键字查询查询
-      //return;
-    }
     const name = options.name;
     if (name != undefined) {
       wx.setNavigationBarTitle({
@@ -63,42 +66,56 @@ Page({
       })
     }
       
-      if (name == "机构名称") {
-        flag = "1";
-        var tmp = [];
-        requests.requestGetTopN({
-        }, (data) => {
-          if(data.retCode == '00'){
-            for(var i=0;i<data.data.length;i++){
-              tmp.push(data.data[i].instName);
-            }
+    if (name == "机构名称") {
+      var tmp = [];
+      requests.requestGetTopN({
+      }, (data) => {
+        if(data.retCode == '00'){
+          for(var i=0;i<data.data.length;i++){
+            tmp.push(data.data[i].instName);
           }
-        }, () => {
-          // _this.setData({ totalRecord: 0 });
-          //console.log("failed ....... "+_this.data.data);
-        }, () => {
-          // _this.setData({ loadingMore: false });
-          _this.setData({ hotword: tmp, placehoder: "请输入机构名称" });
-          //console.log("hotword is : "+_this.data.hotword);
-          //初始化的时候渲染wxSearchdata 第二个为你的search高度
-          WxSearch.init(_this, 43, _this.data.hotword);
-          // WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
+        }
+      }, () => {
+          
+      }, () => {
+        _this.setData({ hotword: tmp, placehoder: "请输入机构名称", flagType: 1 });
+        //初始化的时候渲染wxSearchdata 第二个为你的search高度
+        WxSearch.init(_this, 43, _this.data.hotword);
+      });
+    } else if (name == "认证领域") {
+      _this.setData({ placehoder: "请输入认证领域", flagType: 2 });
+      WxSearch.init(_this, 43, ["管理体系认证", "服务认证", "自愿性工业产品认证", "自愿性农产品认证","强制性产品认证"]);
+    } else if (name == "所在地区") {
+      _this.setData({
+        placehoder: "请输入地区", 
+        flagType: 3, 
+        isShowCity: true, // 显示区域选择框
+        showDistrict: false // 默认为省市区三级区域选择 
         });
-        // console.log("abc is ....... "+tmp);
-      } else if (name == "认证领域") {
-        flag = "2";
-        _this.setData({  placehoder: "请输入认证领域" });
-        WxSearch.init(_this, 43, ["管理体系认证", "服务认证", "自愿性工业产品认证", "自愿性农产品认证","强制性产品认证"]);
-      } else if (name == "所在地区") {
-        flag = "3";
-        _this.setData({  placehoder: "请输入地区" });
-        WxSearch.init(_this, 43, ["北京", "上海", "广州", "深圳"]);
-      } else if (name == "认可情况") {
-        flag = "4";
-        _this.setData({  placehoder: "请输入认可情况" });
-        WxSearch.init(_this, 43, ["cnas认可", "境外认可"]);
-      } 
-    
+      Promise(wx.request, {
+        url: API + '1',
+        method: 'GET'
+      }).then((province) => {
+        const firstProvince = province.data.data[0];
+        // _this.addDot(province.data.data);
+        /**
+         * 默认选择获取的省份第一个省份数据
+         */
+        _this.setData({
+          proviceData: province.data.data,
+          searchKey: province.data.data[0].regionName,
+        });
+      }).then((city) => {
+       
+      }).then((district) => {        
+        
+      }).catch((e) => {
+        console.log(e);
+      })
+    } else if (name == "认可情况") {
+      _this.setData({ placehoder: "请输入CNAS认可领域", flagType: 4 });
+      WxSearch.init(_this, 43, ["质量管理体系", "有机产品", "服务认证", "危害分析与关键控制点","能源管理体系"]);
+    }     
   },
 
   /**
@@ -157,14 +174,6 @@ Page({
 
   },
 
-  searchClickEvent: function (event) {
-    if (!this.data.searchKey) {
-      return;
-    }
-    this.setData({ pageIndex: 0, pageData: [] });
-    requestData.call(this);
-
-  },
   //下拉请求数据
   scrollLowerEvent: function (e) {
     let that = this;
@@ -177,59 +186,53 @@ Page({
     }
   },
   pullDownRefresh: function (e){
-    // console.log("call download......");
-    //requestData.call(this);
+ 
   },
-  searchInputEvent: function (e) {
-    this.setData({
-      searchKey: e.detail.value
-    })
-  },
-  // searchClick: function (e) {
-  //   var that = this;
-  //   that.setData({ searchKey: e.detail.value, pageIndex: 0, pageData: [] });
-  //   requestData.call(that);
 
-  // },
   wxSearchFn: function (e) {
-    // console.log("query is ...... "+this.data.searchKey);
-    var that = this
-    WxSearch.wxSearchAddHisKey(that);
+    var that = this;
+    if(that.data.flagType != 3){
+      WxSearch.wxSearchAddHisKey(that);
+    }else{
+      that.setData({ isShowCity: false})
+    }
     if (!that.data.searchKey) {
       return;
     }
-    that.setData({ pageIndex: 0, pageData: [], isShow: true, searchLoadingComplete: false });
+    that.setData({ pageIndex: 0, pageData: [], isShow: true, searchLoadingComplete: false, totalRecord:0 });
     requestData.call(that);
-    // console.log("search data is ...... " + that.data.wxSearchData.value)
   },
   wxSearchInput: function (e) {
-    var that = this
+    var that = this;
     that.setData({
       searchKey: e.detail.value
     })
     WxSearch.wxSearchInput(e, that);
   },
   wxSerchFocus: function (e) {
-    var that = this
+    var that = this;
     that.setData({isShow:false});
+    if(that.data.flagType == 3){      
+      that.setData({isShowCity:true})
+      return;
+    }
     WxSearch.wxSearchFocus(e, that);
-    // console.log("focus view is ...... " + this.data.wxSearchData.view);
   },
   wxSearchBlur: function (e) {
-    var that = this
-    WxSearch.wxSearchBlur(e, that);
+    var that = this;
+    if(that.data.flagType != 3){
+      WxSearch.wxSearchBlur(e, that);
+    }
   },
   wxSearchKeyTap: function (e) {
-    var that = this
-    // console.log("this.searchKey is : "+that.data.wxSearchData.value);
+    var that = this;
     WxSearch.wxSearchKeyTap(e, that);
     that.setData({
       searchKey: that.data.wxSearchData.value
     });
-    // console.log("call back is ....... " + that.data.wxSearchData.value)
   },
   wxSearchDeleteKey: function (e) {
-    var that = this
+    var that = this;
     WxSearch.wxSearchDeleteKey(e, that);
   },
   wxSearchDeleteAll: function (e) {
@@ -239,8 +242,41 @@ Page({
   wxSearchTap: function (e) {
     var that = this
     WxSearch.wxSearchHiddenPancel(that);
-  }
+  },
 
+  addDot: function (arr) {
+    if (arr instanceof Array) {
+      arr.map(val => {
+        if (val.regionName.length > 4) {
+          val.fullNameDot = val.regionName.slice(0, 4) + '...';
+          return val;
+        } else {
+          val.fullNameDot = val.regionName;
+          return val;
+        }
+      })
+    }
+  },
+  /**
+   * 页面选址触发事件
+   */
+  choosearea: function () {
+    let that = this;
+    that.setData({
+      isShowCity: true, isShow: false
+    })
+  },
+  /**
+   * 滑动事件
+   */
+  bindChange: function (e) {
+    let that = this;
+    const current_value = e.detail.value, _data = that.data;
+    var tmpProviceKey = that.data.proviceData[current_value[0]].regionName;            
+    that.setData({
+       searchKey: tmpProviceKey
+    })
+  }
 });
 
 
@@ -252,9 +288,7 @@ function requestData() {
   var q = _this.data.searchKey;
   var start = _this.data.pageIndex;
   var pageSize = _this.data.pageSize;
-  // console.log(start);
-  //_this.setData({ loadingMore: true, isInit: false });
-  // updateRefreshBall.call(_this);
+  var flag = _this.data.flagType;
   //请求之前清空列表数据
   if(_this.isInit){//如果是首次加载,清空数据
     _this.setData({
@@ -269,33 +303,29 @@ function requestData() {
     queryFlag: flag,
     pageSize: pageSize
   }, (data) => {
-    // console.log(data.retCode);
     if (data.retCode == '02') {
       //没有记录
       _this.setData({ totalRecord: 0 });
     } else if(data.retCode == '00') {
-      // console.log(data.data);
-      /*var obj = JSON.parse(data.data);*/
       var myDate = new Date();
       var currentYear = myDate.getFullYear();//获得当前年份
       var countYear = 0;
       var ratifyYear = "";
-      // console.log(data.data.pageList.length);
       if (data.data.pageList.length>0){      
         for (var i = 0; i < data.data.pageList.length;i++){
           var logoName = data.data.pageList[i].instName.substr(0,1);
           data.data.pageList[i].logoName = logoName;//截取第一个字为logo
           countYear = currentYear - data.data.pageList[i].ratifyDate.split('-')[0];
           if(countYear<1){
-            ratifyYear = "成立不足1年";
+            ratifyYear = "批准不足1年";
           }else if (countYear < 5){
-            ratifyYear = "成立1到5年";
+            ratifyYear = "批准1到5年";
           } else if (countYear < 10) {
-            ratifyYear = "成立5到10年";
+            ratifyYear = "批准5到10年";
           } else if (countYear < 15) {
-            ratifyYear = "成立10到15年";
+            ratifyYear = "批准10到15年";
           } else {
-            ratifyYear = "成立15年以上";
+            ratifyYear = "批准15年以上";
           }
           data.data.pageList[i].ratifyYear = ratifyYear;
         }
@@ -306,7 +336,6 @@ function requestData() {
           bvisiable: "display:none"
         });
       }else{
-        // console.log("没有数据了......");
         _this.setData({
           searchLoadingComplete: true, //把“没有数据”设为true，显示 
           loadingMore: false //把"上拉加载"的变量设为false，隐藏 

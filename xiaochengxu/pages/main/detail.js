@@ -11,8 +11,8 @@ Page({
     // 页面配置  
     winWidth: 0,
     winHeight: 0,
-    // tab切换 
-    currentTab: 0,
+    toView: 'baseInfo',
+    _num : 0
   },
 
   /**
@@ -106,20 +106,24 @@ Page({
   onShareAppMessage: function () {
 
   },
-  // 滑动切换tab 
-  bindChange: function (e) {
-    var that = this;
-    that.setData({ currentTab: e.detail.current });
+  
+  tapBaseInfo : function(e){
+    this.setData({ toView: 'baseInfo',_num : 1});
   },
-  // 点击tab切换 
-  swichNav: function (e) {
-    var that = this;
-    if (this.data.currentTab === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        currentTab: e.target.dataset.current
-      })
-    }
+
+  tapAuthArea: function (e) {
+    this.setData({ toView: 'authArea', _num: 2 });
+  },
+
+  tapCerNum: function (e) {
+    this.setData({ toView: 'cerNum',_num : 3 });
+  },
+
+  tapPerNum: function (e) {
+    this.setData({ toView: 'perNum',_num : 4 });
+  },
+
+  tapCNASArea: function (e) {
+    this.setData({ toView: 'cnasArea', _num: 5 });
   }
 })
