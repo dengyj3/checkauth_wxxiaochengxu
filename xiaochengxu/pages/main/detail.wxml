@@ -50,7 +50,7 @@
       <label data-num="5" class="{{_num == 5 ? 'active' : ''}}" bindtap="tapCNASArea">CNAS认可</label>
     </block>
   </view> 
-  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" style="height:{{winHeight - 40}}px;">
+  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" style="height:{{winHeight-40}}px;">
     <view id="baseInfo" class="scroll-view-item bc_green">
       <view class="msection-title">
         <image src="../images/blueStrip.png"></image> 1 基本信息
