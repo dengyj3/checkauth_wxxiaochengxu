@@ -5,7 +5,7 @@
     <text>{{instDetail.instName}}</text>
   </view>
   <view class="content">
-    <view class="title t1">
+    <view class="title">
       <text>浏览量: {{instDetail.pageView}} | </text>
       <text>{{instDetail.instType}}</text>
     </view>
@@ -50,7 +50,7 @@
       <label data-num="5" class="{{_num == 5 ? 'active' : ''}}" bindtap="tapCNASArea">CNAS认可</label>
     </block>
   </view> 
-  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" style="height:{{winHeight}}px;">
+  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" style="height:{{winHeight - 40}}px;">
     <view id="baseInfo" class="scroll-view-item bc_green">
       <view class="msection-title">
         <image src="../images/blueStrip.png"></image> 1 基本信息
@@ -58,19 +58,19 @@
 
       <view class="form-list">
         <view class="form-item">
-          <view class="form-item-hd">注册号/统一社会信用代码：</view>
+          <view class="form-item-hd">注册号/统一社会信用代码: </view>
           <view class="form-item-bd">{{instDetail.orgCode}}</view>
         </view>
         <view class="form-item">
-          <view class="form-item-hd">法定代表人：</view>
+          <view class="form-item-hd">法定代表人: </view>
           <view class="form-item-bd">{{instDetail.principal}}</view>
         </view>
         <view class="form-item">
-          <view class="form-item-hd">注册资金：</view>
-          <view class="form-item-bd">{{instDetail.regCapital}}</view>
+          <view class="form-item-hd">注册资金: </view>
+          <view class="form-item-bd">{{instDetail.regCapital}} 万元</view>
         </view>
         <view class="form-item">
-          <view class="form-item-hd">机构类型：</view>
+          <view class="form-item-hd">机构类型: </view>
           <view class="form-item-bd">{{instDetail.instType}}</view>
         </view>
         <view class="form-item">
