@@ -12,7 +12,7 @@ page{
   /*width: 100%;*/ 
   /*border-bottom: 2rpx solid #777777; */
   text-align: left; 
-  line-height: 40rpx;
+  line-height: 30px;
 }
 .swiper-tab-list{
   /*font-size: 20rpx; */
@@ -50,6 +50,7 @@ page{
 
 .title text {
   font-size: 24rpx;
+  color: #353535;
 }
 
 .cover {

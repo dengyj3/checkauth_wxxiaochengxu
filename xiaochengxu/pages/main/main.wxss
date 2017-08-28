@@ -55,6 +55,7 @@ page {
 
 .title text {
   font-size: 24rpx;
+  color: #353535;
 }
 
 .cover {

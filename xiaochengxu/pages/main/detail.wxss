@@ -197,7 +197,7 @@ page {
   flex: 1;
 }
 .btn-area{
-  height: 20px;
+  height: 25px;
   border: 4px solid #e1e1e1;
   width: 98%;
   margin-bottom: 10px;
@@ -207,7 +207,8 @@ page {
   float: left; 
   text-align: center;
   font-size: 12px;
-  height: 20px;
+  height: 25px;
+  padding-top: 4px;
   /* font-weight: 600; */
   /* margin: 0 3rpx; */
 }
