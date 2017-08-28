@@ -209,9 +209,8 @@ page {
   font-size: 12px;
   height: 25px;
   padding-top: 4px;
-  /* font-weight: 600; */
-  /* margin: 0 3rpx; */
 }
+
 
 ::-webkit-scrollbar{
   width: 0;

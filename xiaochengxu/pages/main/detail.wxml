@@ -9,7 +9,7 @@
       <text>浏览量: {{instDetail.pageView}} | </text>
       <text>{{instDetail.instType}}</text>
     </view>
-    <view class="service-tags s1">
+    <view class="service-tags">
       <text>{{instDetail.instStatus}}</text>
       <block wx:if="{{instDetail.cnasRec == '认可'}}">
         <text>CNAS{{instDetail.cnasRec}}</text>
